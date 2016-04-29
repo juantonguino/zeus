@@ -1,0 +1,5 @@
+@extends('admin.template.main')
+@section('title', 'Lista de Hoteles')
+@section('title_section', 'Lista de Hoteles')
+@section('content')
+@endsection()
