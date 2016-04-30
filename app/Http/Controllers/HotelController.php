@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Hotel;
+
 use App\Http\Requests;
 
 class HotelController extends Controller
@@ -36,7 +38,8 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $hotel= new Hotel();
+        dd($hotel);
     }
 
     /**

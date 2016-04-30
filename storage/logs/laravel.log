@@ -12690,3 +12690,6 @@ Stack trace:
 #75 C:\Users\juand\Google Drive\laravel\zeus\public\index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #76 C:\Users\juand\Google Drive\laravel\zeus\server.php(21): require_once('C:\\Users\\juand\\...')
 #77 {main}  
+[2016-04-30 00:09:26] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'App\Http\Controllers\Hotel' not found' in C:\Users\juand\Google Drive\laravel\zeus\app\Http\Controllers\HotelController.php:39
+Stack trace:
+#0 {main}  
