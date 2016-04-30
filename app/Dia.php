@@ -25,7 +25,7 @@ class Dia extends Model
 
     public function vehiculoDias()
     {
-    	return $this->hasToMany('App\VehiculoDia')
+    	return $this->hasToMany('App\VehiculoDia');
     }
 
     public function hotel()

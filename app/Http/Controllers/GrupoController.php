@@ -132,12 +132,12 @@ class GrupoController extends Controller
         $grupo->costo_total_recorrido = $request->costo_total_recorrido;
         $grupo->costo_total_gastado = $request->costo_total_gastado;
 
-        if($grupo->estado=="1"){
-            $grupo->estado=true;
-        }
-        else{
-            $grupo->estado=false;
-        }
+        //if($grupo->estado=="1"){
+        //    $grupo->estado=true;
+        //}
+        //else{
+        //    $grupo->estado=false;
+        //}
 
         $grupo->save();
         Flash::warning('Se ha modificado el grupo '.$grupo->nombre.' satisfactoriamente');

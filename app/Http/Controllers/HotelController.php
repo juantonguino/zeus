@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Hotel;
 
+use Laracasts\Flash\Flash;
+
 use App\Http\Requests;
 
 class HotelController extends Controller
@@ -17,7 +19,9 @@ class HotelController extends Controller
      */
     public function index()
     {
-        return view('admin.hotel.index');
+      $hoteles= Hotel::orderBy('nombre', 'ASC')->paginate(10);
+      //return view('admin.hotel.index')->with('hoteles',$hoteles);
+      return view('admin.hotel.index',['hoteles'=>$hoteles]);
     }
 
     /**
@@ -39,7 +43,17 @@ class HotelController extends Controller
     public function store(Request $request)
     {
       $hotel= new Hotel();
-        dd($hotel);
+      $hotel->nombre=$request->nombre;
+      $hotel->telefono=$request->telefono;
+      $hotel->capacidad=$request->capacidad;
+      $hotel->administrador=$request->administrador;
+      $hotel->direccion=$request->direccion;
+      $hotel->correo_electronico=$request->correo_electronico;
+      $hotel->pagina_web=$request->pagina_web;
+      $hotel->save();
+      Flash::success('Se ha agregado el hotel <b>'.$hotel->nombre.'</b> satisfactoriamente');
+      //dd($hotel);
+      return redirect()->route('admin.hotel.index');
     }
 
     /**
@@ -50,7 +64,9 @@ class HotelController extends Controller
      */
     public function show($id)
     {
-        //
+        $hotel=Hotel::find($id);
+        //dd($hotel);
+        return view('admin.hotel.view', ['hotel'=>$hotel]);
     }
 
     /**
@@ -61,7 +77,8 @@ class HotelController extends Controller
      */
     public function edit($id)
     {
-        //
+        $hotel= Hotel::find($id);
+        return view('admin.hotel.edit', ['hotel'=>$hotel]);
     }
 
     /**
@@ -73,7 +90,18 @@ class HotelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $hotel= Hotel::find($id);
+      $hotel->nombre=$request->nombre;
+      $hotel->telefono=$request->telefono;
+      $hotel->capacidad=$request->capacidad;
+      $hotel->administrador=$request->administrador;
+      $hotel->direccion=$request->direccion;
+      $hotel->correo_electronico=$request->correo_electronico;
+      $hotel->pagina_web=$request->pagina_web;
+      //dd($hotel);
+      $hotel->save();
+      Flash::warning('Se ha modificado el hotel '.$hotel->nombre.' satisfactoriamente');
+      return redirect()->route('admin.hotel.index');
     }
 
     /**
@@ -84,6 +112,10 @@ class HotelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $hotel=Hotel::find($id);
+        $nombre= $hotel->nombre;
+        $hotel->delete();
+        Flash::error('el hotel <b>'.$nombre.'</b> ha sido eliminado');
+        return redirect()->route('admin.hotel.index');
     }
 }
