@@ -21,7 +21,7 @@
 			    </div>
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav">
-							<li><a href="#">Conductor<span class="sr-only">(current)</span></a></li>
+							<!--<li><a href="#">Conductor<span class="sr-only">(current)</span></a></li>-->
 							<li><a href="#">Conductor</a></li>
 							<li><a href="#">Empresa de Transportes</a></li>
 							<li><a href="{{route('admin.grupo.index')}}">Grupo</a></li>
