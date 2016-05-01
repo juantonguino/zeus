@@ -12,6 +12,10 @@ use App\Hotel;
 
 use App\Dia;
 
+use Carbon\Carbon;
+
+use Laracasts\Flash\Flash;
+
 class DiaController extends Controller
 {
     /**
@@ -22,8 +26,13 @@ class DiaController extends Controller
     public function index($id)
     {
         $grupo= Grupo::find($id);
-        //dd($grupo);
-        return view('admin.dia.index', ['grupo'=>$grupo]);
+        $dias= Dia::where('grupo_id',$id)->orderBy('fecha','DESC')->paginate(10);
+        $hoteles= Hotel::all();
+        foreach ($dias as $dia) {
+          $dia->fecha=Carbon::parse($dia->fecha)->format('Y/m/d');
+          $dia->hotel_id=Hotel::find($dia->hotel_id)->nombre;
+        }
+        return view('admin.dia.index', ['grupo'=>$grupo,'dias'=>$dias]);
     }
 
     /**
@@ -38,7 +47,6 @@ class DiaController extends Controller
       foreach ($hoteles as $hotel) {
         $listahoteles["$hotel->id"]=$hotel->nombre;
       }
-      //dd($listahoteles);
       return view('admin.dia.create', ['id'=>$id, 'listahoteles'=>$listahoteles]);
     }
 
@@ -60,7 +68,9 @@ class DiaController extends Controller
       $dia->recorrido_plan=$request->recorrido_plan;
       $dia->grupo_id=$id;
       $dia->save();
-      dd($dia);
+      $dia->fecha=Carbon::parse($dia->fecha)->format('Y/m/d');
+      Flash::success('Se ha agregado el Dia <b>'.$dia->fecha.'</b> satisfactoriamente');
+      return redirect()->route('admin.dia.index',['id'=>$id]);
     }
 
     /**

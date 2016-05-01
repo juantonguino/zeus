@@ -119,11 +119,11 @@ Route::group(['prefix'=>'admin'], function () {
   		]);
     Route::get('dia/{id}/delete', [
       'uses'=>'DiaController@destroy',
-      'as'=>'admin.dia.delete'
+      'as'=>'admin.dia.destroy'
     ]);
     Route::get('dia/{reserva}/view',[
       'uses'=>'DiaController@show',
-      'as'=>'admin.dia.view'
+      'as'=>'admin.dia.show'
     ]);
     Route::get('dia/{id}/edit',[
       'uses'=>'DiaController@edit',
