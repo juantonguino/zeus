@@ -82,6 +82,7 @@ class DiaController extends Controller
     public function show($id)
     {
       $dia=Dia::find($id);
+      $dia->fecha=Carbon::parse($dia->fecha)->format('Y-m-d');
       $hoteles= Hotel::all();
       $listahoteles= array();
       foreach ($hoteles as $hotel) {
@@ -101,6 +102,7 @@ class DiaController extends Controller
     {
       $dia=Dia::find($id);
       $dia->fecha_mostrar=Carbon::parse($dia->fecha)->format('Y/m/d');
+      $dia->fecha=Carbon::parse($dia->fecha)->format('Y-m-d');
       $hoteles= Hotel::all();
       $listahoteles= array();
       foreach ($hoteles as $hotel) {

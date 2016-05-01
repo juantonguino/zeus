@@ -73,6 +73,7 @@ class ClienteController extends Controller
     public function show($id)
     {
       $cliente= Cliente::find($id);
+      $cliente->fecha_nacimiento=Carbon::parse($cliente->fecha_nacimiento)->format('Y-m-d');
       return view('admin.cliente.view', ['cliente'=>$cliente]);
     }
 
@@ -85,7 +86,7 @@ class ClienteController extends Controller
     public function edit($id)
     {
       $cliente= Cliente::find($id);
-      //dd($cliente);
+      $cliente->fecha_nacimiento=Carbon::parse($cliente->fecha_nacimiento)->format('Y-m-d');
       return view('admin.cliente.edit', ['cliente'=>$cliente]);
     }
 
