@@ -1,5 +1,5 @@
 @extends('admin.template.main')
-@section('title', 'Lista de Dias del Grupo')
+@section('title', 'Crear Dia del Grupo')
 @section('title_section', 'Crear Dia')
 @section('content')
   {!! Form::open(['route'=>['admin.dia.store', $id], 'method'=>'POST']) !!}

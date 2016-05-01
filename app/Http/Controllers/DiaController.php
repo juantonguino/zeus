@@ -81,7 +81,14 @@ class DiaController extends Controller
      */
     public function show($id)
     {
-        //
+      $dia=Dia::find($id);
+      $hoteles= Hotel::all();
+      $listahoteles= array();
+      foreach ($hoteles as $hotel) {
+        $listahoteles["$hotel->id"]=$hotel->nombre;
+      }
+      $dia->fecha_mostrar=Carbon::parse($dia->fecha)->format('Y/m/d');
+      return view('admin.dia.view',['dia'=>$dia, 'listahoteles'=>$listahoteles]);
     }
 
     /**
@@ -92,7 +99,14 @@ class DiaController extends Controller
      */
     public function edit($id)
     {
-        //
+      $dia=Dia::find($id);
+      $dia->fecha_mostrar=Carbon::parse($dia->fecha)->format('Y/m/d');
+      $hoteles= Hotel::all();
+      $listahoteles= array();
+      foreach ($hoteles as $hotel) {
+        $listahoteles["$hotel->id"]=$hotel->nombre;
+      }
+      return view('admin.dia.edit',['dia'=>$dia,'listahoteles'=>$listahoteles]);
     }
 
     /**
@@ -104,7 +118,18 @@ class DiaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $dia=Dia::find($id);
+      $dia->destino=$request->destino;
+      $dia->instrucciones_recorrido_guia=$request->instrucciones_recorrido_guia;
+      $dia->recorrido_plan=$request->recorrido_plan;
+      $dia->fecha=$request->fecha;
+      $dia->total_gastado=$request->total_gastado;
+      $dia->dinero_asignado=$request->dinero_asignado;
+      $dia->hotel_id=$request->hotel_id;
+      $dia->save();
+      $fecha=$dia->fecha=Carbon::parse($dia->fecha)->format('Y/m/d');
+      Flash::warning('Se ha modificado el dia '.$fecha.' satisfactoriamente');
+      return redirect()->route('admin.dia.index', ['id'=>$dia->grupo_id]);
     }
 
     /**
@@ -115,6 +140,11 @@ class DiaController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $dia= Dia::find($id);
+      $grupo= $dia->grupo_id;
+      $dia->delete();
+      $fecha=$dia->fecha=Carbon::parse($dia->fecha)->format('Y/m/d');
+      Flash::error('El Dia <b>'.$fecha.'</b> ha sido eliminado');
+      return redirect()->route('admin.dia.index',['id'=>$grupo]);
     }
 }

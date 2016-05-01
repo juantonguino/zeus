@@ -1,6 +1,6 @@
 @extends('admin.template.main')
 @section('title', 'Editar Reserva')
-@section('title_section', 'Editar Reserva')
+@section('title_section', 'Editar Reserva '.$reserva->nombre)
 @section('content')
 	{!! Form::open(['route'=>['admin.reserva.update', $reserva->id], 'method'=>'PUT']) !!}
 		<div class="row">

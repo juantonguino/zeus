@@ -1,6 +1,6 @@
 @extends('admin.template.main')
 @section('title', 'Ver Cliente')
-@section('title_section', 'Ver Cliente')
+@section('title_section', 'Ver Cliente '.$cliente->nombres)
 @section('content')
 <div class="row">
     <div class="form-group col-lg-3">
