@@ -144,4 +144,11 @@ Route::group(['prefix'=>'admin'], function () {
   		'as'=>'admin.hotel.destroy'
   		]);
 
+    Route::resource('restaurante','RestauranteController');
+
+    Route::get('retaurante/{id}/destroy', [
+  		'uses'=>'RestauranteController@destroy',
+  		'as'=>'admin.restaurante.destroy'
+  		]);
+
 });

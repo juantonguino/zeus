@@ -28,7 +28,7 @@
 							<li><a href="#">Guia</a></li>
 							<li><a href="{{route('admin.hotel.index')}}">Hotel</a></li>
 							<li><a href="#">Proveedor</a></li>
-							<li><a href="#">Restaurante</a></li>
+							<li><a href="{{route('admin.restaurante.index')}}">Restaurante</a></li>
 							<li><a href="#">Usuario</a></li>
 							<li><a href="#">Vehiculo</a></li>
 			      </ul>
