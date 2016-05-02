@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" ng-app="zeus">
 	<head>
 		<meta charset="UTF-8"/>
 		<title>@yield('title','default') | Panel de Aministracion de Zeus</title>
@@ -17,7 +17,7 @@
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
 			      </button>
-			      <a class="navbar-brand" href="#">ZEUS</a>
+			      <a class="navbar-brand" href="#">AGENCIA DE VIAJES</a>
 			    </div>
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav">
@@ -96,6 +96,7 @@
 		</div>
 		{{Html::script('plugins/bootstrap/js/jquery.min.js')}}
   	{{Html::script('plugins/bootstrap/js/bootstrap.min.js')}}
+		{{Html::script('plugins/angular/angular.min.js')}}
 		{{Html::script('script_zeus.js')}}
 	</body>
 </html>

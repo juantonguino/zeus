@@ -2,7 +2,7 @@
 	 * Archivo con los scripts del proyecto zeus
 	 */
 
-	var json={message_title:'', message_body:'', route:''};
+	var json = {message_title:'', message_body:'', route:''};
 
 	function confirmDelete(message_title, message_body, route) {
 		json.message_title= message_title;
@@ -18,3 +18,6 @@
 		console.log(json);
 		location.href=json.route;
 	});
+
+	var app=angular.module('zeus',[]);
+	

@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Bienvenido a Zeus</div>
+                <div class="title">Bienvenido a Agencia de Viejes</div>
             </div>
         </div>
     </body>
