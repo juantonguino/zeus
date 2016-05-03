@@ -25,7 +25,7 @@
 							<li><a href="#">Conductor</a></li>
 							<li><a href="#">Empresa de Transportes</a></li>
 							<li><a href="{{route('admin.grupo.index')}}">Grupo</a></li>
-							<li><a href="#">Guia</a></li>
+							<li><a href="{{route('admin.guia.index')}}">Guia</a></li>
 							<li><a href="{{route('admin.hotel.index')}}">Hotel</a></li>
 							<li><a href="#">Proveedor</a></li>
 							<li><a href="{{route('admin.restaurante.index')}}">Restaurante</a></li>
