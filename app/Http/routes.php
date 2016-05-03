@@ -151,4 +151,6 @@ Route::group(['prefix'=>'admin'], function () {
   		'as'=>'admin.restaurante.destroy'
   		]);
 
+    Route::resource('guia','GuiaController');
+
 });
