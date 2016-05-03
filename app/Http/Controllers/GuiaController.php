@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Guia;
+
+use Laracasts\Flash\Flash;
+
 class GuiaController extends Controller
 {
     /**
@@ -15,7 +19,7 @@ class GuiaController extends Controller
      */
     public function index()
     {
-        //
+      return view('admin.guia.index');
     }
 
     /**
@@ -25,7 +29,7 @@ class GuiaController extends Controller
      */
     public function create()
     {
-        //
+      return view('admin.guia.create');
     }
 
     /**
@@ -36,7 +40,18 @@ class GuiaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $guia= new Guia();
+      $guia->cedula=$request->cedula;
+      $guia->nombres=$request->nombres;
+      $guia->telefono=$request->telefono;
+      $guia->fecha_nacimiento=$request->fecha_nacimiento;
+      $guia->correo_electronico=$request->correo_electronico;
+      $guia->direccion=$request->direccion;
+      $guia->perfil_academico=$request->perfil_academico;
+      //dd($guia);
+      $guia->save();
+      Flash::success('Se ha agregado el guia <b>'.$guia->nombres.'</b> satisfactoriamente');
+      return redirect()->route('admin.guia.index');
     }
 
     /**
