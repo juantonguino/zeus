@@ -152,5 +152,10 @@ Route::group(['prefix'=>'admin'], function () {
   		]);
 
     Route::resource('guia','GuiaController');
+    
+    Route::get('guia/{id}/destroy',[
+      'uses'=>'GuiaController@destroy',
+      'as'=>'admin.guia.destroy'
+    ]);
 
 });

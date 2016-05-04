@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\Guia;
 
+use Carbon\Carbon;
+
 use Laracasts\Flash\Flash;
 
 class GuiaController extends Controller
@@ -19,7 +21,8 @@ class GuiaController extends Controller
      */
     public function index()
     {
-      return view('admin.guia.index');
+      $guias=Guia::orderBy('nombres','ASC')->paginate(10);
+      return view('admin.guia.index',['guias'=>$guias]);
     }
 
     /**
@@ -62,7 +65,9 @@ class GuiaController extends Controller
      */
     public function show($id)
     {
-        //
+        $guia=Guia::find($id);
+        $guia->fecha_nacimiento=Carbon::parse($guia->fecha_nacimiento)->format('Y-m-d');
+        return view('admin.guia.view',['guia'=>$guia]);
     }
 
     /**
@@ -73,7 +78,9 @@ class GuiaController extends Controller
      */
     public function edit($id)
     {
-        //
+      $guia=Guia::find($id);
+      $guia->fecha_nacimiento=Carbon::parse($guia->fecha_nacimiento)->format('Y-m-d');
+      return view('admin.guia.edit',['guia'=>$guia]);
     }
 
     /**
@@ -85,7 +92,17 @@ class GuiaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $guia=Guia::find($id);
+        $guia->cedula=$request->cedula;
+        $guia->nombres=$request->nombres;
+        $guia->telefono=$request->telefono;
+        $guia->fecha_nacimiento=$request->fecha_nacimiento;
+        $guia->correo_electronico=$request->correo_electronico;
+        $guia->direccion=$request->direccion;
+        $guia->perfil_academico=$request->perfil_academico;
+        $guia->save();
+        Flash::warning('Se ha modificado el guia '.$guia->nombres.' satisfactoriamente');
+        return redirect()->route('admin.guia.index');
     }
 
     /**
@@ -96,6 +113,10 @@ class GuiaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $guia=Guia::find($id);
+        $nombres=$guia->nombres;
+        $guia->delete();
+        Flash::error('el guia <b>'.$nombres.'</b> ha sido eliminado');
+        return redirect()->route('admin.guia.index');
     }
 }
