@@ -18,8 +18,10 @@ class CreateUsuarioTable extends Migration
             $table->string('contrasenia',100);
             $table->boolean('administrador')->default(false);
 
-            $table->bigInteger('guia_cedula')->unsigned()->nullable();
-            $table->foreign('guia_cedula')->references('cedula')->on('guia')->onDelete('cascade');
+            //$table->bigInteger('guia_cedula')->unsigned()->nullable();
+            //$table->foreign('guia_cedula')->references('cedula')->on('guia')->onDelete('cascade');
+            $table->integer('guia_id')->unsigned();
+            $table->foreign('guia_id')->references('id')->on('guia')->onDelete('cascade');
 
             $table->timestamps();
         });

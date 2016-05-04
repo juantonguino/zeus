@@ -17,8 +17,10 @@ class CreateGuiaDiaTable extends Migration
             $table->boolean('cancelado')->default(false);
             $table->decimal('valor',11,2)->nullable();
 
-            $table->bigInteger('guia_cedula')->unsigned();
-            $table->foreign('guia_cedula')->references('cedula')->on('guia')->onDelete('cascade');
+            //$table->bigInteger('guia_cedula')->unsigned();
+            //$table->foreign('guia_cedula')->references('cedula')->on('guia')->onDelete('cascade');
+            $table->integer('guia_id')->unsigned();
+            $table->foreign('guia_id')->references('id')->on('guia')->onDelete('cascade');
 
             $table->integer('dia_id')->unsigned();
             $table->foreign('dia_id')->references('id')->on('dia')->onDelete('cascade');
