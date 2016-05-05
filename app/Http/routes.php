@@ -144,6 +144,9 @@ Route::group(['prefix'=>'admin'], function () {
   		'as'=>'admin.hotel.destroy'
   		]);
 
+    /*
+     * routes Restaurante
+     */
     Route::resource('restaurante','RestauranteController');
 
     Route::get('retaurante/{id}/destroy', [
@@ -151,11 +154,18 @@ Route::group(['prefix'=>'admin'], function () {
   		'as'=>'admin.restaurante.destroy'
   		]);
 
+    /*
+     * routes Guia
+     */
     Route::resource('guia','GuiaController');
-    
+
     Route::get('guia/{id}/destroy',[
       'uses'=>'GuiaController@destroy',
       'as'=>'admin.guia.destroy'
     ]);
 
+    /*
+     * routes Usuario
+     */
+    Route::resource('usuario','UsuarioController');
 });

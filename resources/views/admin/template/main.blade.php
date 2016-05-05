@@ -29,7 +29,7 @@
 							<li><a href="{{route('admin.hotel.index')}}">Hotel</a></li>
 							<li><a href="#">Proveedor</a></li>
 							<li><a href="{{route('admin.restaurante.index')}}">Restaurante</a></li>
-							<li><a href="#">Usuario</a></li>
+							<li><a href="{{route('admin.usuario.index')}}">Usuario</a></li>
 							<li><a href="#">Vehiculo</a></li>
 			      </ul>
 						<ul class="nav navbar-nav navbar-right">
