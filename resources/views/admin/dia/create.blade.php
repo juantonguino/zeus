@@ -26,7 +26,7 @@
         </div>
         <div class="form-group col-lg-3">
             {!! Form::label('hotel_id', 'Hotel:') !!}
-            {!! Form::select('hotel_id', $listahoteles,null, ['class'=>'form-control', 'placeholder'=>'Hotel', 'required']) !!}
+            {!! Form::select('hotel_id', $listahoteles, null, ['class'=>'form-control', 'placeholder'=>'Hotel', 'required']) !!}
         </div>
     </div>
     <div class="row">

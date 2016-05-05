@@ -168,4 +168,10 @@ Route::group(['prefix'=>'admin'], function () {
      * routes Usuario
      */
     Route::resource('usuario','UsuarioController');
+
+    Route::get('usuario/{id}/destroy',[
+      'uses'=>'UsuarioController@destroy',
+      'as'=>'admin.usuario.destroy'
+    ]);
+
 });

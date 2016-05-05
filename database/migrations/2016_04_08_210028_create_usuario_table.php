@@ -16,7 +16,7 @@ class CreateUsuarioTable extends Migration
             $table->increments('id');
             $table->string('nombre',100)->unique();
             $table->string('contrasenia',100);
-            $table->boolean('administrador')->default(false);
+            $table->boolean('rol')->default(false);
 
             //$table->bigInteger('guia_cedula')->unsigned()->nullable();
             //$table->foreign('guia_cedula')->references('cedula')->on('guia')->onDelete('cascade');
