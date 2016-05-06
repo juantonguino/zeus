@@ -13,7 +13,8 @@ class CreateConductorTable extends Migration
     public function up()
     {
         Schema::create('conductor', function (Blueprint $table) {
-            $table->bigIncrements('cedula');
+            $table->increments('id');
+            $table->bigInteger('cedula');
             $table->string('nombres',100);
             $table->bigInteger('telefono');
             $table->date('fecha_nacimiento')->nullable();

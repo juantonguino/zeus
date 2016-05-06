@@ -25,8 +25,10 @@ class CreateVehiculoTable extends Migration
             $table->integer('empresa_transportes_id')->unsigned();
             $table->foreign('empresa_transportes_id')->references('id')->on('empresa_transportes')->onDelete('cascade');
 
-            $table->bigInteger('conductor_cedula')->unsigned();
-            $table->foreign('conductor_cedula')->references('cedula')->on('conductor')->onDelete('cascade');
+            //$table->bigInteger('conductor_cedula')->unsigned();
+            //$table->foreign('conductor_cedula')->references('cedula')->on('conductor')->onDelete('cascade');
+            $table->bigInteger('conductor_id')->unsigned();
+            $table->foreign('conductor_id')->references('id')->on('conductor')->onDelete('cascade');
 
             $table->timestamps();
         });
