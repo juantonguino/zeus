@@ -27,12 +27,13 @@
 							<li><a href="{{route('admin.grupo.index')}}">Grupo</a></li>
 							<li><a href="{{route('admin.guia.index')}}">Guia</a></li>
 							<li><a href="{{route('admin.hotel.index')}}">Hotel</a></li>
-							<li><a href="#">Proveedor</a></li>
+							<li><a href="{{route('admin.proveedor.index')}}">Proveedor</a></li>
 							<li><a href="{{route('admin.restaurante.index')}}">Restaurante</a></li>
 							<li><a href="{{route('admin.usuario.index')}}">Usuario</a></li>
 							<li><a href="#">Vehiculo</a></li>
 			      </ul>
 						<ul class="nav navbar-nav navbar-right">
+							<!--
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-bell"></i><span class="caret"></span></a>
 								<ul class="dropdown-menu">
@@ -43,6 +44,7 @@
 									<li><a href="#">Separated link</a></li>
 								</ul>
 							</li>
+							-->
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-cog"></i><span class="caret"></span></a>
 								<ul class="dropdown-menu">

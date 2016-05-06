@@ -174,4 +174,14 @@ Route::group(['prefix'=>'admin'], function () {
       'as'=>'admin.usuario.destroy'
     ]);
 
+    /*
+     * routes Proveedor
+     */
+     Route::resource('proveedor','ProveedorController');
+
+     Route::get('proveedor/{id}/destroy',[
+       'uses'=>'ProveedorController@destroy',
+       'as'=>'admin.proveedor.destroy'
+     ]);
+
 });
