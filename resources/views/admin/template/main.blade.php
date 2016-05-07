@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="es" ng-app="zeus">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8"/>
 		<title>@yield('title','default') | Panel de Aministracion de Zeus</title>
 		{{Html::style('plugins/bootstrap/css/bootstrap.min.css')}}
+    {{Html::style('plugins/select2/css/select2.css')}}
+    {{Html::style('plugins/select2/css/select2-bootstrap.css')}}
 		{{Html::style('style_zeus.css')}}
 	</head>
 	<body class="admin-body">
@@ -98,7 +100,6 @@
 		</div>
 		{{Html::script('plugins/bootstrap/js/jquery.min.js')}}
   	{{Html::script('plugins/bootstrap/js/bootstrap.min.js')}}
-		{{Html::script('plugins/angular/angular.min.js')}}
 		{{Html::script('script_zeus.js')}}
 	</body>
 </html>
