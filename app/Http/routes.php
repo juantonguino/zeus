@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Route::group(['prefix'=>'admin'], function () {
 
@@ -185,3 +185,19 @@ Route::group(['prefix'=>'admin'], function () {
      ]);
 
 });
+
+/*
+ * Routes Autentication
+ */
+Route::get('/',[
+  'uses'=>'Auth\AuthController@getLogin',
+  'as'=>'login'
+]);
+Route::post('auth/login',[
+  'uses'=>'Auth\AuthController@postLogin',
+  'as'=>'verified'
+]);
+Route::get('auth/logout',[
+  'uses'=>'Auth\AuthController@pgetLogouth',
+  'as'=>'logout'
+]);
