@@ -184,6 +184,11 @@ Route::group(['prefix'=>'admin'], function () {
        'as'=>'admin.proveedor.destroy'
      ]);
 
+		 /*
+		 	* routes Asignacion
+			*/
+			Route::resource('asignar','AsignarController');
+
 });
 
 /*
