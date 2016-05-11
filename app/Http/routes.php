@@ -195,14 +195,10 @@ Route::group(['prefix'=>'admin'], function () {
  * Routes Autentication
  */
 Route::get('/',[
-  'uses'=>'Auth\AuthController@getLogin',
+  'uses'=>'AuthUsuarioController@index',
   'as'=>'login'
 ]);
-Route::post('auth/login',[
-  'uses'=>'Auth\AuthController@postLogin',
+Route::post('/',[
+  'uses'=>'AuthUsuarioController@authenticate',
   'as'=>'verified'
-]);
-Route::get('auth/logout',[
-  'uses'=>'Auth\AuthController@pgetLogouth',
-  'as'=>'logout'
 ]);
