@@ -10,7 +10,7 @@ class Vehiculo extends Model
 
     public function vehiculoDias()
     {
-    	return $this->hasToMany('App\VehiculoDia')
+    	return $this->hasToMany('App\VehiculoDia');
     }
 
     public function conductor()
@@ -20,6 +20,6 @@ class Vehiculo extends Model
 
     public function empresaTransportes()
     {
-    	return $this->belongsTo('App\EmpresaTransportes')
+    	return $this->belongsTo('App\EmpresaTransportes');
     }
 }
