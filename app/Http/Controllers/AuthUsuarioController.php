@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\Usuario;
 
+use Laracasts\Flash\Flash;
+
 use Auth;
 
 class AuthUsuarioController extends Controller
@@ -19,7 +21,16 @@ class AuthUsuarioController extends Controller
 
     public function authenticate(Request $request)
     {
-      $res=Usuario::orderBy('nombre','asc')->paginate(10);
-      dd($res);
+      $usuario=Usuario::where('nombre',$request->nombre)->first();
+      if($usuario!=null && $usuario->contrasenia==$request->contrasenia){
+        if ($usuario->rol==1) {
+          Auth::login($usuario);
+          return redirect('admin');
+        }
+      }
+      else {
+        Flash::error('Upss Usuario o Contraseña invalidos');
+        return view('index');
+      }
     }
 }
