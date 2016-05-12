@@ -76,6 +76,7 @@
 					<div class="collapse navbar-collapse">
 						<p class="navbar-text">Todos los derechos resservados &copy 2016</p>
 						<p class="navbar-text navbar-right"><b>Juan Diego Tonguino</b></p>
+						<p class="navbar-text navbar-right"><b>Andres Ojeda Ibarra</b></p><br/>
 					</div>
 				</div>
 			</nav>
