@@ -8,7 +8,7 @@ use App\Http\Requests;
 
 use App\Guia;
 
-use App\Usuario;
+use App\User;
 
 use Laracasts\Flash\Flash;
 
@@ -21,10 +21,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-      $usuarios= Usuario::orderBy('nombre','ASC')->paginate(10);
-      foreach ($usuarios as $usuario) {
-        $usuario->guia_id=Guia::find($usuario->guia_id)->nombres;
-      }
+      $usuarios= User::orderBy('name','ASC')->paginate(10);
       //dd($usuarios);
       return view('admin.usuario.index',['usuarios'=>$usuarios]);
     }
@@ -52,11 +49,11 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-      $usuario= new Usuario();
-      $usuario->nombre=$request->nombre;
-      $usuario->contrasenia=$request->contrasenia;
-      $usuario->rol=$request->rol;
-      $usuario->guia_id=$request->guia_id;
+      $usuario= new User();
+      $usuario->name=$request->name;
+      $usuario->email=$request->email;
+      $usuario->password=$request->password;
+      //dd($usuario);
       $usuario->save();
       Flash::success('Se ha agregado el Usuario <b>'.$usuario->nombre.'</b> satisfactoriamente');
       return redirect()->route('admin.usuario.index');
@@ -70,13 +67,8 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        $usuario=Usuario::find($id);
-        $guias= Guia::all();
-        $listaguias= array();
-        foreach ($guias as $guia) {
-          $listaguias["$guia->id"]=$guia->nombres;
-        }
-        return view('admin.usuario.view',['usuario'=>$usuario, 'listaguias'=>$listaguias]);
+        $usuario=User::find($id);
+        return view('admin.usuario.view',['usuario'=>$usuario]);
     }
 
     /**
@@ -87,13 +79,8 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-      $usuario=Usuario::find($id);
-      $guias= Guia::all();
-      $listaguias= array();
-      foreach ($guias as $guia) {
-        $listaguias["$guia->id"]=$guia->nombres;
-      }
-      return view('admin.usuario.edit',['usuario'=>$usuario, 'listaguias'=>$listaguias]);
+      $usuario=User::find($id);
+      return view('admin.usuario.edit',['usuario'=>$usuario]);
     }
 
     /**
@@ -105,13 +92,13 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $usuario=Usuario::find($id);
-      $usuario->nombre=$request->nombre;
-      $usuario->contrasenia=$request->contrasenia;
-      $usuario->rol=$request->rol;
-      $usuario->guia_id=$request->guia_id;
+      $usuario=User::find($id);
+      $usuario->name=$request->name;
+      $usuario->email=$request->email;
+      $usuario->password=$request->password;
+      //dd($usuario);
       $usuario->save();
-      Flash::warning('Se ha modificado el usuario <b>'.$usuario->nombre.'</b> satisfactoriamente');
+      Flash::warning('Se ha modificado el usuario <b>'.$usuario->name.'</b> satisfactoriamente');
       return redirect()->route('admin.usuario.index');
     }
 
@@ -123,8 +110,9 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-      $usuario=Usuario::find($id);
-      $nombre= $usuario->nombre;
+      $usuario=User::find($id);
+      $nombre= $usuario->name;
+      //dd($usuario);
       $usuario->delete();
       Flash::error('el usuario <b>'.$nombre.'</b> ha sido eliminado');
       return redirect()->route('admin.usuario.index');

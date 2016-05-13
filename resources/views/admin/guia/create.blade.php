@@ -28,9 +28,13 @@
     </div>
 </div>
 <div class="row">
-    <div class="form-group col-lg-6">
-        {!! Form::label('correo_electronico', 'Correo Electronico:') !!}
-        {!! Form::email('correo_electronico', null, ['class'=>'form-control', 'placeholder'=>'Correo electronico del guia', 'required']) !!}
+    <div class="form-group col-lg-3">
+        {!! Form::label('email', 'Correo Electronico:') !!}
+        {!! Form::email('email', null, ['class'=>'form-control', 'placeholder'=>'Correo electronico del guia', 'required']) !!}
+    </div>
+    <div class="form-group col-lg-3">
+      {!! Form::label('password', 'Contraseña:') !!}
+      {!! Form::text('password', null, ['class'=>'form-control', 'placeholder'=>'Contraseña del guia', 'required']) !!}
     </div>
 </div>
 <div class="row">

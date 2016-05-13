@@ -11,24 +11,18 @@
 <table class="table">
   <thead>
     <th>Nombre</th>
+    <th>Correo Electronico</th>
     <th>Contraseña</th>
-    <th>Rol</th>
-    <th>Guia</th>
     <th>Opciones</th>
   </thead>
   <tbody>
     @foreach($usuarios as $usuario)
       <tr>
-        <td>{{$usuario->nombre}}</td>
-        <td>{{$usuario->contrasenia}}</td>
-        @if($usuario->rol==1)
-          <td>Administrador</td>
-        @else
-          <td>Guia</td>
-        @endif
-        <td>{{$usuario->guia_id}}</td>
+        <td>{{$usuario->name}}</td>
+        <td>{{$usuario->email}}</td>
+        <td>{{$usuario->password}}</td>
         <td>
-          <a href="#" class="btn btn-danger glyphicon glyphicon-trash" title="Eiminar" onclick="confirmDelete('Desea Eliminar Usuario??', 'Desea Eliminar el Usuario {{$usuario->nombre}}', '{{route('admin.usuario.destroy',$usuario->id)}}')" />
+          <a href="#" class="btn btn-danger glyphicon glyphicon-trash" title="Eiminar" onclick="confirmDelete('Desea Eliminar Usuario??', 'Desea Eliminar el Usuario {{$usuario->name}}', '{{route('admin.usuario.destroy',$usuario->id)}}')" />
           <a href="{{route('admin.usuario.show', $usuario->id)}}" class="btn btn-primary glyphicon glyphicon-search" title="Ver"/>
           <a href="{{route('admin.usuario.edit',$usuario->id)}}" class="btn btn-warning glyphicon glyphicon-pencil" title="Editar"/>
         </td>

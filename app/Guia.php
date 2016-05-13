@@ -12,9 +12,4 @@ class Guia extends Model
     {
     	return $this->hasToMany('App\GuiaDia');
     }
-
-    public function usuarios()
-    {
-    	return $this->hasToMany('App\Usuario');
-    }
 }

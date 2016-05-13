@@ -48,9 +48,10 @@ class GuiaController extends Controller
       $guia->nombres=$request->nombres;
       $guia->telefono=$request->telefono;
       $guia->fecha_nacimiento=$request->fecha_nacimiento;
-      $guia->correo_electronico=$request->correo_electronico;
+      $guia->email=$request->email;
       $guia->direccion=$request->direccion;
       $guia->perfil_academico=$request->perfil_academico;
+      $guia->password=$request->password;
       //dd($guia);
       $guia->save();
       Flash::success('Se ha agregado el guia <b>'.$guia->nombres.'</b> satisfactoriamente');
@@ -97,9 +98,11 @@ class GuiaController extends Controller
         $guia->nombres=$request->nombres;
         $guia->telefono=$request->telefono;
         $guia->fecha_nacimiento=$request->fecha_nacimiento;
-        $guia->correo_electronico=$request->correo_electronico;
+        $guia->email=$request->email;
         $guia->direccion=$request->direccion;
         $guia->perfil_academico=$request->perfil_academico;
+        $guia->password=$request->password;
+        //dd($guia);
         $guia->save();
         Flash::warning('Se ha modificado el guia '.$guia->nombres.' satisfactoriamente');
         return redirect()->route('admin.guia.index');

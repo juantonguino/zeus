@@ -22,7 +22,7 @@
         <td>{{$guia->cedula}}</td>
         <td>{{$guia->nombres}}</td>
         <td>{{$guia->telefono}}</td>
-        <td>{{$guia->correo_electronico}}</td>
+        <td>{{$guia->email}}</td>
         <td>
           <a href="#" class="btn btn-danger glyphicon glyphicon-trash" title="Eiminar" onclick="confirmDelete('Desea Eliminar Guia??', 'Desea Eliminar el guia {{$guia->nombres}}', '{{route('admin.guia.destroy',$guia->id)}}')" />
           <a href="{{route('admin.guia.show', $guia->id)}}" class="btn btn-primary glyphicon glyphicon-search" title="Ver"/>

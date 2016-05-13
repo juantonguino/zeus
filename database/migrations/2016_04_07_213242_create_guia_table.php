@@ -18,10 +18,13 @@ class CreateGuiaTable extends Migration
             $table->string('nombres',100);
             $table->bigInteger('telefono');
             $table->date('fecha_nacimiento')->nullable();
-            $table->string('correo_electronico',100)->nullable();
             $table->string('direccion',100)->nullable();
             $table->string('perfil_academico',100)->nullable();
 
+            $table->string('email')->unique();
+            $table->string('password');
+
+            $table->rememberToken();
             $table->timestamps();
         });
     }

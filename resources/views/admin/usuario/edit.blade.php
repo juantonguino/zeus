@@ -1,30 +1,24 @@
 @extends('admin.template.main')
 @section('title', 'Editar Usuario')
-@section('title_section', 'Editar Usuario '.$usuario->nombre)
+@section('title_section', 'Editar Usuario '.$usuario->name)
 @section('content')
 {!! Form::open(['route'=>['admin.usuario.update', $usuario->id], 'method'=>'PUT']) !!}
 <div class="row">
     <div class="form-group col-lg-6">
-        {!! Form::label('nombre', 'Nombre:') !!}
-        {!! Form::text('nombre', $usuario->nombre, ['class'=>'form-control', 'placeholder'=>'Nombre del usuario', 'required']) !!}
+        {!! Form::label('name', 'Nombre:') !!}
+        {!! Form::text('name', $usuario->name, ['class'=>'form-control', 'placeholder'=>'Nombre del usuario', 'required']) !!}
     </div>
 </div>
 <div class="row">
     <div class="form-group col-lg-6">
-        {!! Form::label('contrasenia', 'Contraseña:') !!}
-        {!! Form::text('contrasenia', $usuario->contrasenia, ['class'=>'form-control', 'placeholder'=>'Contraseña del usuario', 'required']) !!}
+        {!! Form::label('email', 'Correo ELectronico:') !!}
+        {!! Form::email('email', $usuario->email, ['class'=>'form-control', 'placeholder'=>'Correo electronico del usuario', 'required']) !!}
     </div>
 </div>
 <div class="row">
     <div class="form-group col-lg-6">
-        {!! Form::label('rol', 'Rol:') !!}
-        {!! Form::select('rol', ['1'=>'Administrador', '0'=>'Guia'], $usuario->rol, ['class'=>'form-control', 'placeholder'=>'Rol del usuario', 'required']) !!}
-    </div>
-</div>
-<div class="row">
-    <div class="form-group col-lg-6">
-        {!! Form::label('guia_id', 'Guia:') !!}
-        {!! Form::select('guia_id', $listaguias, $usuario->guia_id, ['class'=>'form-control', 'placeholder'=>'Guia del usuario', 'required']) !!}
+        {!! Form::label('password', 'Contraseña:') !!}
+        {!! Form::text('password', $usuario->password, ['class'=>'form-control', 'placeholder'=>'Contraseña del usuario', 'required']) !!}
     </div>
 </div>
 <div class="row">
