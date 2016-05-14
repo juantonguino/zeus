@@ -18,7 +18,7 @@
 <div class="row">
     <div class="form-group col-lg-6">
         {!! Form::label('password', 'Contraseña:') !!}
-        {!! Form::text('password', $usuario->password, ['class'=>'form-control', 'placeholder'=>'Contraseña del usuario', 'required']) !!}
+        {!! Form::text('password', null, ['class'=>'form-control', 'placeholder'=>'Nueva contraseña del usuario', 'required']) !!}
     </div>
 </div>
 <div class="row">

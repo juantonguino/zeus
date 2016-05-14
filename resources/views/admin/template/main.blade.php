@@ -49,9 +49,9 @@
 							</li>
 							-->
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-cog"></i><span class="caret"></span></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <i class="glyphicon glyphicon-cog"></i><span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="#"><i class="glyphicon glyphicon-log-out"></i> Cerrar Sesion</a></li>
+									<li><a href="{{ url('/logout') }}"><i class="glyphicon glyphicon-log-out"></i> Cerrar Sesion</a></li>
 								</ul>
 							</li>
 						</ul>

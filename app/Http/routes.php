@@ -194,11 +194,7 @@ Route::group(['prefix'=>'admin'], function () {
 /*
  * Routes Autentication
  */
-Route::get('/',[
-  'uses'=>'AuthUsuarioController@index',
-  'as'=>'login'
-]);
-Route::post('/',[
-  'uses'=>'AuthUsuarioController@authenticate',
-  'as'=>'verified'
-]);
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

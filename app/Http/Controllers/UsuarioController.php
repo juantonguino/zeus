@@ -33,12 +33,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-      $guias= Guia::all();
-      $listaguias= array();
-      foreach ($guias as $guia) {
-        $listaguias["$guia->id"]=$guia->nombres;
-      }
-      return view('admin.usuario.create', ['listaguias'=>$listaguias]);
+      return view('admin.usuario.create');
     }
 
     /**
@@ -52,7 +47,7 @@ class UsuarioController extends Controller
       $usuario= new User();
       $usuario->name=$request->name;
       $usuario->email=$request->email;
-      $usuario->password=$request->password;
+      $usuario->password=bcrypt($request->password);
       //dd($usuario);
       $usuario->save();
       Flash::success('Se ha agregado el Usuario <b>'.$usuario->nombre.'</b> satisfactoriamente');
@@ -95,7 +90,9 @@ class UsuarioController extends Controller
       $usuario=User::find($id);
       $usuario->name=$request->name;
       $usuario->email=$request->email;
-      $usuario->password=$request->password;
+      if($usuario->password!=""){
+          $usuario->password=bcrypt($request->password);
+      }
       //dd($usuario);
       $usuario->save();
       Flash::warning('Se ha modificado el usuario <b>'.$usuario->name.'</b> satisfactoriamente');
