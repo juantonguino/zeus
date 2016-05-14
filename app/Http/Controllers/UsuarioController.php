@@ -90,7 +90,7 @@ class UsuarioController extends Controller
       $usuario=User::find($id);
       $usuario->name=$request->name;
       $usuario->email=$request->email;
-      if($usuario->password!=""){
+      if($request->password!=""){
           $usuario->password=bcrypt($request->password);
       }
       //dd($usuario);

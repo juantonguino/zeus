@@ -34,7 +34,7 @@
     </div>
     <div class="form-group col-lg-3">
       {!! Form::label('password', 'Contraseña:') !!}
-      {!! Form::text('password', $guia->password, ['class'=>'form-control', 'placeholder'=>'Contraseña del guia', 'required']) !!}
+      {!! Form::text('password', null, ['class'=>'form-control', 'placeholder'=>'Nueva contraseña del guia']) !!}
     </div>
 </div>
 <div class="row">

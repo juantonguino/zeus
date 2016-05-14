@@ -27,14 +27,16 @@
     </div>
 </div>
 <div class="row">
-    <div class="form-group col-lg-3">
+    <div class="form-group col-lg-6">
         {!! Form::label('email', 'Correo Electronico:') !!}
         {!! Form::email('email', $guia->email, ['class'=>'form-control', 'placeholder'=>'Correo electronico del guia', 'required', 'disabled']) !!}
     </div>
+    <!--
     <div class="form-group col-lg-3">
       {!! Form::label('password', 'Contraseña:') !!}
       {!! Form::text('password', $guia->password, ['class'=>'form-control', 'placeholder'=>'Contraseña del guia', 'required', 'disabled']) !!}
     </div>
+    -->
 </div>
 <div class="row">
     <div class="form-group col-lg-6">
