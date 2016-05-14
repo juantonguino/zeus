@@ -15,10 +15,13 @@
 //    return view('welcome');
 //});
 
-Route::group(['prefix'=>'admin'], function () {
+Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
 
+	Route::get('index', function () {
+    	return view('admin.index');
+	});
 	Route::get('/', function () {
-    	return view('admin.template.main');
+    	return view('admin.index');
 	});
 
 	/*
@@ -194,7 +197,11 @@ Route::group(['prefix'=>'admin'], function () {
 /*
  * Routes Autentication
  */
+Route::get('/','Auth\AuthController@showLoginForm');
 
-Route::auth();
+Route::post('/','Auth\AuthController@login');
 
-Route::get('/home', 'HomeController@index');
+Route::get('logout','Auth\AuthController@logout');
+
+//Route::get('/home', 'HomeController@index');
+//Route::auth();
