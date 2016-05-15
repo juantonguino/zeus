@@ -15,7 +15,8 @@
 //    return view('welcome');
 //});
 
-Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
+//Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
+Route::group(['prefix'=>'admin'], function () {
 
 	Route::get('index', function () {
     	return view('admin.index');
