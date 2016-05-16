@@ -29,6 +29,7 @@
             <a href="#" class="btn btn-danger glyphicon glyphicon-trash" title="Eiminar" onclick="confirmDelete('Desea Eliminar Hotel??', 'Desea Eliminar el hotel {{$hotel->nombre}}', '{{route('admin.hotel.destroy',$hotel->id)}}')" />
 						<a href="{{route('admin.hotel.show', $hotel->id)}}" class="btn btn-primary glyphicon glyphicon-search" title="Ver"/>
 						<a href="{{route('admin.hotel.edit', $hotel->id)}}" class="btn btn-warning glyphicon glyphicon-pencil" title="Editar"/>
+            <a href="{{route('admin.tarifahotel.index', $hotel->id)}}" class="btn btn-primary glyphicon glyphicon-briefcase" title="Ver Tarfas"/>
           </td>
         </tr>
       @endforeach

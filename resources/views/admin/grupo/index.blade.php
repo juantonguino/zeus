@@ -39,7 +39,7 @@
 						<a href="{{route('admin.grupo.edit',$grupo->id)}}" class="btn btn-warning glyphicon glyphicon-pencil" title="Editar"/>
 						<a href="{{route('admin.cliente.index',$grupo->id)}}" class="btn btn-primary glyphicon glyphicon-user" title="Clientes"/>
 						<a href="{{route('admin.reserva.index', $grupo->id)}}" class="btn btn-primary glyphicon glyphicon-flag" title="Reserva"/>
-						<a href="{{route('admin.dia.index', $grupo->id)}}" class="btn btn-primary glyphicon glyphicon-briefcase" title="Dia"/>
+						<a href="{{route('admin.dia.index', $grupo->id)}}" class="btn btn-primary glyphicon glyphicon glyphicon-cloud" title="Dia"/>
 						<a href="{{route('admin.grupo.report',$grupo->id)}}" class="btn btn-primary glyphicon glyphicon glyphicon-print" title="Generar Reporte Bienvenida"/>
 					</td>
 				</tr>

@@ -1,6 +1,6 @@
 @extends('template.main')
 @section('title', 'Inicio')
-@section('title_section', 'Iniciar Secion')
+@section('title_section', 'Iniciar Sesion')
 @section('content')
 <div class="container">
     <div class="row">

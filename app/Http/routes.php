@@ -15,8 +15,7 @@
 //    return view('welcome');
 //});
 
-//Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
-Route::group(['prefix'=>'admin'], function () {
+Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
 
 	Route::get('index', function () {
     	return view('admin.index');
@@ -193,6 +192,43 @@ Route::group(['prefix'=>'admin'], function () {
 			*/
 			Route::resource('asignar','AsignarController');
 
+			/*
+			 * routes TarfaHotel
+			 */
+			 Route::get('tarifahotel/{hotel}',[
+				 'uses'=>'TarifaHotelController@index',
+	       'as'=>'admin.tarifahotel.index'
+			 ]);
+
+			 Route::get('tarifahotel/{hotel}/create',[
+				 'uses'=>'TarifaHotelController@create',
+	       'as'=>'admin.tarifahotel.create'
+			 ]);
+
+			 Route::post('tarifahotel/{hotel}/store',[
+          'uses'=>'TarifaHotelController@store',
+          'as'=>'admin.tarifahotel.store'
+      ]);
+
+			Route::get('tarifahotel/{tarifa}/view',[
+					'uses'=>'TarifaHotelController@show',
+					'as'=>'admin.tarifahotel.show',
+			]);
+
+			Route::get('tarifahotel/{tarifa}/edit',[
+					'uses'=>'TarifaHotelController@edit',
+					'as'=>'admin.tarifahotel.edit',
+			]);
+
+			Route::get('tarifahotel/{tarifa}/destroy',[
+					'uses'=>'TarifaHotelController@destroy',
+					'as'=>'admin.tarifahotel.destroy',
+			]);
+
+			Route::put('tarifahotel/{tarifa}/update',[
+					'uses'=>'TarifaHotelController@update',
+					'as'=>'admin.trarifahotel.update'
+			]);
 });
 
 /*
