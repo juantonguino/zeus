@@ -10,6 +10,8 @@ use Carbon\Carbon;
 
 use App\User;
 
+use App\Grupo;
+
 class AsignarController extends Controller
 {
     /**
@@ -42,9 +44,11 @@ class AsignarController extends Controller
     {
       $fecha_inicio= $request->fecha_inicio;
       $fecha_fin= $request->fecha_fin;
+      $grupos=Grupo::all();
 
       $fechas_consultar=array();
       $fechas_mostrar=array();
+      $dias = array();
 
       while ($fecha_inicio<=$fecha_fin) {
         $fecha_consultar= Carbon::parse($fecha_inicio)->format('Y-m-d');
@@ -54,6 +58,14 @@ class AsignarController extends Controller
         array_push($fechas_mostrar, $fecha_mostrar);
 
         $fecha_inicio=(new Carbon($fecha_inicio))->addDays(1);
+      }
+
+      foreach ($fechas_mostrar as $fecha) {
+        foreach ($grupos as $grupo) {
+          foreach ($grupo->dias as $dia) {
+            dd($dia);
+          }
+        }
       }
       return view('admin.asignar.asignar', ['fechas_mostrar'=>$fechas_mostrar]);
     }

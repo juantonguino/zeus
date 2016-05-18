@@ -24,16 +24,18 @@
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav">
 							<!--<li><a href="#">Conductor<span class="sr-only">(current)</span></a></li>-->
-							<li><a href="#">Conductor</a></li>
-							<li><a href="#">Empresa de Transportes</a></li>
 							<li><a href="{{route('admin.grupo.index')}}">Grupo</a></li>
 							<li><a href="{{route('admin.guia.index')}}">Guia</a></li>
 							<li><a href="{{route('admin.hotel.index')}}">Hotel</a></li>
 							<li><a href="{{route('admin.proveedor.index')}}">Proveedor</a></li>
 							<li><a href="{{route('admin.restaurante.index')}}">Restaurante</a></li>
 							<li><a href="{{route('admin.usuario.index')}}">Usuario</a></li>
+							<li><a href="#">Conductor</a></li>
+							<li><a href="#">Empresa de Transportes</a></li>
 							<li><a href="#">Vehiculo</a></li>
+							<!--
 							<li><a href="{{route('admin.asignar.index')}}">Asignacion</a></li>
+							-->
 			      </ul>
 						<ul class="nav navbar-nav navbar-right">
 							<!--
