@@ -14,6 +14,10 @@ use App\Grupo;
 
 use Carbon\Carbon;
 
+use App\Utilities\LogManager;
+
+use Auth;
+
 class ClienteController extends Controller
 {
     /**
@@ -125,6 +129,7 @@ class ClienteController extends Controller
       $cliente= Cliente::find($id);
       $nombres= $cliente->nombres;
       $grupo= $cliente->grupo_id;
+      LogManager::insertLogDelete(json_encode($cliente),Cliente::class."", Auth::user()->email);
       $cliente->delete();
       Flash::error('El cliente <b>'.$nombres.'</b> ha sido eliminado');
       return redirect()->route('admin.cliente.index',['id'=>$grupo]);
