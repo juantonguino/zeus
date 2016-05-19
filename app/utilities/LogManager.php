@@ -13,6 +13,6 @@ class LogManager extends AnotherClass
 
     public function insertLogDelete($delete_values, $type, $user)
     {
-        DB::insert();
+        DB::insert("call insert_log_delete('".$user."', '".$delete_values."','".$type."');");
     }
 }
