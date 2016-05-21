@@ -48,14 +48,15 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
 		'as'		=>'admin.empresas.destroy'
 	]);
 
-	//Route::put('empresas/{id}/update',[
-  //  'uses'=>'EmpresasController@update',
-  //  'as'=>'admin.empresas.update'
-  //]);
-	//Route::get('empresas/{empresas}/view',[
-	//	'uses'=>'EmpresasController@show',
-	//	'as'=>'admin.empresas.view'
-	//]);
+	/*
+	* routes Conductores
+	*/
+	Route::resource('conductores','ConductoresController');
+
+	Route::get('conductores/{id}/destroy',[
+		'uses'=>'ConductoresController@destroy',
+		'as'=>'admin.conductores.destroy'
+	]);
 
 	/*
 	 * routes Reserva
