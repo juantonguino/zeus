@@ -31,7 +31,7 @@
 							<li><a href="{{route('admin.restaurante.index')}}">Restaurante</a></li>
 							<li><a href="{{route('admin.usuario.index')}}">Usuario</a></li>
 							<li><a href="#">Conductor</a></li>
-							<li><a href="#">Empresa de Transportes</a></li>
+							<li><a href="{{route('admin.empresas.index')}}">Empresa de Transportes</a></li>
 							<li><a href="#">Vehiculo</a></li>
 							<!--
 							<li><a href="{{route('admin.asignar.index')}}">Asignacion</a></li>

@@ -39,6 +39,25 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
 		]);
 
 	/*
+	* routes EmpresaTransportes
+	*/
+
+	Route::resource('empresas','EmpresasController');
+	Route::get('empresas/{id}/destroy',[
+		'uses'  =>'EmpresasController@destroy',
+		'as'		=>'admin.empresas.destroy'
+	]);
+
+	//Route::put('empresas/{id}/update',[
+  //  'uses'=>'EmpresasController@update',
+  //  'as'=>'admin.empresas.update'
+  //]);
+	//Route::get('empresas/{empresas}/view',[
+	//	'uses'=>'EmpresasController@show',
+	//	'as'=>'admin.empresas.view'
+	//]);
+
+	/*
 	 * routes Reserva
 	 */
 
