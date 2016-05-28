@@ -10,9 +10,13 @@ use Laracasts\Flash\Flash;
 
 use App\Grupo;
 
+use App\Utilities\LogManager;
+
 use Carbon\Carbon;
 
 use PhpOffice\PhpWord\TemplateProcessor;
+
+use Auth;
 
 use \PhpOffice\PhpWord\Autoloader;
 
@@ -122,6 +126,8 @@ class GrupoController extends Controller
     public function update(Request $request, $id)
     {
         $grupo=Grupo::find($id);
+        $old_values=Grupo::find($id);
+
         $grupo->nombre = $request->nombre;
         $grupo->estado = $request->estado;
         $grupo->ciudad_origen = $request->ciudad_origen;
@@ -138,7 +144,10 @@ class GrupoController extends Controller
         //else{
         //    $grupo->estado=false;
         //}
-
+        $new_values= $grupo;
+        $type=Grupo::class;
+        //dd($old_values, $new_values);
+        LogManager::insertLogUpdate($old_values, $new_values, $type, Auth::user()->name);
         $grupo->save();
         Flash::warning('Se ha modificado el grupo '.$grupo->nombre.' satisfactoriamente');
         return redirect()->route('admin.grupo.index');

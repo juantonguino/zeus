@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Hotel;
 
+use App\Utilities\LogManager;
+
 use Laracasts\Flash\Flash;
 
 use App\Http\Requests;
+
+use Auth;
 
 class HotelController extends Controller
 {
@@ -91,6 +95,8 @@ class HotelController extends Controller
     public function update(Request $request, $id)
     {
       $hotel= Hotel::find($id);
+      $old_values=Hotel::find($id);
+
       $hotel->nombre=$request->nombre;
       $hotel->telefono=$request->telefono;
       $hotel->capacidad=$request->capacidad;
@@ -98,8 +104,12 @@ class HotelController extends Controller
       $hotel->direccion=$request->direccion;
       $hotel->correo_electronico=$request->correo_electronico;
       $hotel->pagina_web=$request->pagina_web;
+
+      $new_values=$hotel;
+      $type=Hotel::class;
       //dd($hotel);
       $hotel->save();
+      LogManager::insertLogUpdate($old_values, $new_values, $type, Auth::user()->name);
       Flash::warning('Se ha modificado el hotel '.$hotel->nombre.' satisfactoriamente');
       return redirect()->route('admin.hotel.index');
     }

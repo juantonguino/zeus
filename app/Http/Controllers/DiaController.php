@@ -12,7 +12,11 @@ use App\Hotel;
 
 use App\Dia;
 
+use App\Utilities\LogManager;
+
 use Carbon\Carbon;
+
+use Auth;
 
 use Laracasts\Flash\Flash;
 
@@ -121,6 +125,8 @@ class DiaController extends Controller
     public function update(Request $request, $id)
     {
       $dia=Dia::find($id);
+      $old_values=Dia::find($id);
+
       $dia->destino=$request->destino;
       $dia->instrucciones_recorrido_guia=$request->instrucciones_recorrido_guia;
       $dia->recorrido_plan=$request->recorrido_plan;
@@ -128,7 +134,11 @@ class DiaController extends Controller
       $dia->total_gastado=$request->total_gastado;
       $dia->dinero_asignado=$request->dinero_asignado;
       $dia->hotel_id=$request->hotel_id;
+
+      $new_values=$dia;
+      $type= Conductor::class;
       $dia->save();
+      LogManager::insertLogUpdate($old_values, $new_values, $type, Auth::user()->name);
       $fecha=$dia->fecha=Carbon::parse($dia->fecha)->format('Y/m/d');
       Flash::warning('Se ha modificado el dia '.$fecha.' satisfactoriamente');
       return redirect()->route('admin.dia.index', ['id'=>$dia->grupo_id]);

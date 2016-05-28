@@ -8,6 +8,10 @@ use App\Http\Requests;
 
 use App\EmpresaTransporte;
 
+use App\Utilities\LogManager;
+
+use Auth;
+
 use Laracasts\Flash\Flash;
 
 class EmpresasController extends Controller
@@ -87,12 +91,17 @@ class EmpresasController extends Controller
     public function update(Request $request, $id)
     {
       $empresa=EmpresaTransporte::find($id);
+      $old_values=EmpresaTransporte::find($id);
+
       $empresa->nombre=$request->nombre;
       $empresa->telefono=$request->telefono;
       $empresa->direccion=$request->direccion;
 
       //dd($usuario);
+      $new_values=$empresa;
+      $type=EmpresaTransporte::class;
       $empresa->save();
+      LogManager::insertLogUpdate($old_values, $new_values, $type, Auth::user()->name);
       Flash::warning('Se ha modificado la Empresa <b>'.$empresa->nombre.'</b> satisfactoriamente');
       return redirect()->route('admin.empresas.index');
     }

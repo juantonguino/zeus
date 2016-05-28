@@ -12,7 +12,11 @@ use Carbon\Carbon;
 
 use App\Grupo;
 
+use App\Utilities\LogManager;
+
 use App\Reserva;
+
+use Auth;
 
 class ReservaController extends Controller
 {
@@ -103,11 +107,15 @@ class ReservaController extends Controller
     public function update(Request $request, $id)
     {
       $reserva=Reserva::find($id);
+      $old_values=Reserva::find($id);
       $reserva->lugar=$request->lugar;
       $reserva->valor=$request->valor;
       $reserva->nombre=$request->nombre;
       $reserva->fecha=$request->fecha." ".$request->hora;
+      $new_values=$reserva;
+      $type=Reserva::class;
       $reserva->save();
+      LogManager::insertLogUpdate($old_values, $new_values, $type, Auth::user()->name);
       Flash::warning('la Reserva a normbre de  <b>'.$reserva->nombre.'</b> en el lugar <b>'.$reserva->lugar.'</b> ha sido Editada');
       return redirect()->route('admin.reserva.index',['id'=>$reserva->grupo_id]);
     }

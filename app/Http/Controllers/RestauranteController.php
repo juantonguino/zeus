@@ -10,6 +10,10 @@ use Laracasts\Flash\Flash;
 
 use App\Restaurante;
 
+use Auth;
+
+use App\Utilities\LogManager;
+
 class RestauranteController extends Controller
 {
     /**
@@ -87,12 +91,18 @@ class RestauranteController extends Controller
     public function update(Request $request, $id)
     {
       $restaurante=Restaurante::find($id);
+      $old_values=Restaurante::find($id);
+
       $restaurante->nombre=$request->nombre;
       $restaurante->capacidad=$request->capacidad;
       $restaurante->telefono=$request->telefono;
       $restaurante->direccion=$request->direccion;
       $restaurante->administrador=$request->administrador;
+
+      $new_values=$restaurante;
+      $type=Restaurante::class;
       $restaurante->save();
+      LogManager::insertLogUpdate($old_values, $new_values, $type, Auth::user()->name);
       Flash::warning('Se ha modificado el restaurante <b>'.$restaurante->nombre.'</b> satisfactoriamente');
       return redirect()->route('admin.restaurante.index');
     }

@@ -8,7 +8,11 @@ use App\Http\Requests;
 
 use App\Guia;
 
+use App\Utilities\LogManager;
+
 use Carbon\Carbon;
+
+use Auth;
 
 use Laracasts\Flash\Flash;
 
@@ -94,6 +98,7 @@ class GuiaController extends Controller
     public function update(Request $request, $id)
     {
         $guia=Guia::find($id);
+        $old_values=Guia::find($id);
         $guia->cedula=$request->cedula;
         $guia->nombres=$request->nombres;
         $guia->telefono=$request->telefono;
@@ -105,7 +110,11 @@ class GuiaController extends Controller
             $guia->password=bcrypt($request->password);
         }
         //dd($guia);
+
+        $new_values=$guia;
+        $type=Guia::class;
         $guia->save();
+        LogManager::insertLogUpdate($old_values, $new_values, $type, Auth::user()->name);
         Flash::warning('Se ha modificado el guia '.$guia->nombres.' satisfactoriamente');
         return redirect()->route('admin.guia.index');
     }

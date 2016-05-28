@@ -10,6 +10,10 @@ use App\TarifaHotel;
 
 use App\Hotel;
 
+use Auth;
+
+use App\Utilities\LogManager;
+
 use Laracasts\Flash\Flash;
 
 class TarifaHotelController extends Controller
@@ -88,10 +92,14 @@ class TarifaHotelController extends Controller
     public function update(Request $request, $id)
     {
         $tarifa=TarifaHotel::find($id);
+        $old_values=TarifaHotel::find($id);
         $tarifa->valor=$request->valor;
         $tarifa->concepto=$request->concepto;
+        $new_values=$tarifa;
+        $type=TarifaHotel::class;
         Flash::warning('se ha modificado la tarifa satisfactoriamente');
         $tarifa->save();
+        LogManager::insertLogUpdate($old_values, $new_values, $type, Auth::user()->name);
         return redirect()->route('admin.tarifahotel.index', ['id'=>$tarifa->hotel_id]);
     }
 

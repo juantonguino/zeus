@@ -10,6 +10,10 @@ use App\Guia;
 
 use App\User;
 
+use App\Utilities\LogManager;
+
+use Auth;
+
 use Laracasts\Flash\Flash;
 
 class UsuarioController extends Controller
@@ -88,13 +92,17 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
       $usuario=User::find($id);
+      $old_values=User::find($id);
       $usuario->name=$request->name;
       $usuario->email=$request->email;
       if($request->password!=""){
           $usuario->password=bcrypt($request->password);
       }
       //dd($usuario);
+      $new_values=$usuario;
+      $type=Usuario::class;
       $usuario->save();
+      LogManager::insertLogUpdate($old_values, $new_values, $type, Auth::user()->name);
       Flash::warning('Se ha modificado el usuario <b>'.$usuario->name.'</b> satisfactoriamente');
       return redirect()->route('admin.usuario.index');
     }

@@ -104,6 +104,8 @@ class ClienteController extends Controller
     public function update(Request $request, $id)
     {
       $cliente=Cliente::find($id);
+      $old_values=Cliente::find($id);
+
       $cliente->tipo_documento=$request->tipo_documento;
       $cliente->numero_documento=$request->numero_documento;
       $cliente->nombres=$request->nombres;
@@ -112,7 +114,10 @@ class ClienteController extends Controller
       $cliente->correo_electronico=$request->correo_electronico;
       $cliente->fecha_nacimiento=$request->fecha_nacimiento;
 
+      $new_values=$cliente;
+      $type=Cliente::class;
       $cliente->save();
+      LogManager::insertLogUpdate($old_values, $new_values, $type, Auth::user()->name);
       Flash::warning('Se ha modificado el cliente '.$cliente->nombres.' satisfactoriamente');
       //dd($cliente);
       return redirect()->route('admin.cliente.index',['id'=>$cliente->grupo_id]);
@@ -129,7 +134,6 @@ class ClienteController extends Controller
       $cliente= Cliente::find($id);
       $nombres= $cliente->nombres;
       $grupo= $cliente->grupo_id;
-      LogManager::insertLogDelete(json_encode($cliente),Cliente::class."", Auth::user()->email);
       $cliente->delete();
       Flash::error('El cliente <b>'.$nombres.'</b> ha sido eliminado');
       return redirect()->route('admin.cliente.index',['id'=>$grupo]);

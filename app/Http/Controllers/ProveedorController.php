@@ -8,7 +8,11 @@ use App\Http\Requests;
 
 use App\Proveedor;
 
+use App\Utilities\LogManager;
+
 use Laracasts\Flash\Flash;
+
+use Auth;
 
 class ProveedorController extends Controller
 {
@@ -85,11 +89,17 @@ class ProveedorController extends Controller
     public function update(Request $request, $id)
     {
       $proveedor=Proveedor::find($id);
+      $old_values=Proveedor::find($id);
+
       $proveedor->nombre=$request->nombre;
       $proveedor->direccion=$request->direccion;
       $proveedor->telefono=$request->telefono;
       $proveedor->pagina_web=$request->pagina_web;
+
+      $new_values=$proveedor;
+      $type=Proveedor::class;
       $proveedor->save();
+      LogManager::insertLogUpdate($old_values, $new_values, $type, Auth::user()->name);
       Flash::warning('Se ha modificado el proveedor '.$proveedor->nombre.' satisfactoriamente');
       return redirect()->route('admin.proveedor.index');
     }

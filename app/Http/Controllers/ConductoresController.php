@@ -8,6 +8,10 @@ use App\Http\Requests;
 
 use App\Conductor;
 
+use App\Utilities\LogManager;
+
+use Auth;
+
 use Laracasts\Flash\Flash;
 
 class ConductoresController extends Controller
@@ -90,6 +94,8 @@ class ConductoresController extends Controller
     public function update(Request $request, $id)
     {
       $conductor=Conductor::find($id);
+      $old_values=Conductor::find($id);
+
       $conductor->cedula=$request->cedula;
       $conductor->nombres=$request->nombres;
       $conductor->telefono=$request->telefono;
@@ -98,7 +104,10 @@ class ConductoresController extends Controller
       $conductor->correo_electronico=$request->correo_electronico;
       $conductor->perfil_academico=$request->perfil_academico;
       //dd($conductor);
+      $new_values= $conductor;
+      $type=Conductor::class;
       $conductor->save();
+      LogManager::insertLogUpdate($old_values, $new_values, $type, Auth::user()->name);
       Flash::warning('Se ha modificado el Conductor <b>'.$conductor->nombres.'</b> satisfactoriamente');
       return redirect()->route('admin.conductores.index');
     }
