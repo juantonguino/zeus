@@ -17,7 +17,7 @@ class CreateLogUpdate extends Migration
             $table->string('old_values');
             $table->string('new_values');
             $table->string('type');
-            $table->string('user_email');
+            $table->string('user_name');
             $table->timestamp('insert_at');
         });
     }

@@ -14,7 +14,7 @@ class CreateLogDelete extends Migration
     {
         Schema::create('log_delete', function (Blueprint $table) {
           $table->increments('id');
-          $table->string('user_email');
+          //$table->string('user_email');
           $table->string('delete_values');
           $table->string('type');
           $table->timestamp('insert_at');
