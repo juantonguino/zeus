@@ -13,6 +13,7 @@
     <th>Nombre</th>
     <th>telefono</th>
     <th>direccion</th>
+    <th>Opciones</th>
   </thead>
   <tbody>
     @foreach($empresas as $empresa)

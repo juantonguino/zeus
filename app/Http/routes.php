@@ -249,6 +249,14 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
 					'uses'=>'TarifaHotelController@update',
 					'as'=>'admin.trarifahotel.update'
 			]);
+
+			Route::resource('vehiculo', 'VehiculoController');
+
+			Route::get('vehiculo/{id}/destroy',[
+					'uses'=>'VehiculoController@destroy',
+					'as'=>'admin.vehiculo.destroy'
+			]);
+
 });
 
 /*

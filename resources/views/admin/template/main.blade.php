@@ -32,7 +32,7 @@
 							<li><a href="{{route('admin.usuario.index')}}">Usuario</a></li>
 							<li><a href="{{route('admin.conductores.index')}}">Conductor</a></li>
 							<li><a href="{{route('admin.empresas.index')}}">Empresa de Transportes</a></li>
-							<li><a href="#">Vehiculo</a></li>
+							<li><a href="{{route('admin.vehiculo.index')}}">Vehiculo</a></li>
 							<!--
 							<li><a href="{{route('admin.asignar.index')}}">Asignacion</a></li>
 							-->

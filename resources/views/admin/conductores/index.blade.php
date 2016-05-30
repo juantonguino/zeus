@@ -13,6 +13,7 @@
     <th>cedula</th>
     <th>Nombres</th>
     <th>Email</th>
+    <th>Opciones</th>
   </thead>
   <tbody>
     @foreach($conductores as $conductor)
