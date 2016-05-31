@@ -136,7 +136,7 @@ class DiaController extends Controller
       $dia->hotel_id=$request->hotel_id;
 
       $new_values=$dia;
-      $type= Conductor::class;
+      $type= Dia::class;
       $dia->save();
       LogManager::insertLogUpdate($old_values, $new_values, $type, Auth::user()->name);
       $fecha=$dia->fecha=Carbon::parse($dia->fecha)->format('Y/m/d');

@@ -1,0 +1,18 @@
+create or replace TRIGGER DELETE_GRUPO
+BEFORE DELETE ON GRUPO
+FOR EACH ROW
+BEGIN
+  INSERT INTO LOG_DELETE(DELETE_VALUES, TYPE, INSERT_AT)VALUES(''||
+  :old.ID||','||
+  :old.NOMBRE||','||
+  :old.ESTADO||','||
+  :old.CIUDAD_ORIGEN||','||
+  :old.FECHA_LLEGADA||','||
+  :old.DESCRIPCION_TRANSPORTE_LLEGADA||','||
+  :old.FECHA_SALIDA||','||
+  :old.DESCRIPCION_TRANSPORTE_SALIDA||','||
+  :old.COSTO_TOTAL_RECORRIDO||','||
+  :old.COSTO_TOTAL_GASTADO||','||
+  :old.CREATED_AT||','||
+  :old.UPDATED_AT, 'Grupo', SYSDATE);
+END;
