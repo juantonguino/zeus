@@ -268,5 +268,23 @@ Route::post('/','Auth\AuthController@login');
 
 Route::get('logout','Auth\AuthController@logout');
 
+Route::get('sendemail', function () {
+
+    $data = array(
+        'name' => "Learning Laravel",
+    );
+
+    Mail::send('email', $data, function ($message) {
+
+        $message->from('juan.tonguino@gmail.com', 'Learning Laravel');
+
+        $message->to('juand.wwe@hotmail.com')->subject('Learning Laravel test email');
+
+    });
+
+    return "Your email has been sent successfully";
+
+});
+
 //Route::get('/home', 'HomeController@index');
 //Route::auth();
