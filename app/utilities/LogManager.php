@@ -47,28 +47,8 @@ class LogManager
     public static function createStringForValues($values)
     {
       $json=json_encode($values);
-      $arreglo=json_decode($json,true);
-      $string= implode(",",$arreglo);
-      return $string;
+      //$arreglo=json_decode($json,true);
+      //$string= implode(",",$arreglo);
+      return $json;
     }
-
-    /**
-    public function constructStringForValues($type, $values)
-    {
-        $retorno="";
-        if($type==Cliente::class){}
-        else if($type==Conductor::class){}
-        else if($type==Dia::class){}
-        else if($type==""){}
-        else if($type==""){}
-        else if($type==""){}
-        else if($type==""){}
-        else if($type==""){}
-        else if($type==""){}
-        else if($type==""){}
-        else if($type==""){}
-        else if($type==""){}
-        return $retorno;
-    }
-    */
 }

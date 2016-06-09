@@ -213,7 +213,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
 			Route::resource('asignar','AsignarController');
 
 			/*
-			 * routes TarfaHotel
+			 * routes TarifaHotel
 			 */
 			 Route::get('tarifahotel/{hotel}',[
 				 'uses'=>'TarifaHotelController@index',
@@ -250,12 +250,30 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
 					'as'=>'admin.trarifahotel.update'
 			]);
 
+			/*
+			 * routes Vehiculo
+			 */
+
 			Route::resource('vehiculo', 'VehiculoController');
 
 			Route::get('vehiculo/{id}/destroy',[
 					'uses'=>'VehiculoController@destroy',
 					'as'=>'admin.vehiculo.destroy'
 			]);
+
+			/*
+			 * routes TarifaRestaurante
+			 */
+
+			 Route::get('tarifarestaurante/{reataurante}',[
+				 'uses'=>'TarifaRestauranteController@index',
+				 'as'=>'admin.tarifarestaurante.index'
+			 ]);
+
+			 Route::get('tarifarestaurante/{restaurante}/create',[
+				 'uses'=>'TarifaRestauranteController@create',
+				 'as'=>'admin.tarifarestaurante.create'
+			 ]);
 
 });
 

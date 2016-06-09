@@ -14,8 +14,8 @@ class CreateLogUpdate extends Migration
     {
         Schema::create('log_update', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('old_values');
-            $table->string('new_values');
+            $table->string('old_values', 500);
+            $table->string('new_values', 500);
             $table->string('type');
             $table->string('user_name');
             $table->timestamp('insert_at');
