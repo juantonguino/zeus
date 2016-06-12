@@ -275,6 +275,30 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
 				 'as'=>'admin.tarifarestaurante.create'
 			 ]);
 
+			 Route::post('tarifarestaurante/{restaurante}/store',[
+				'uses' =>'TarifaRestauranteController@store',
+				'as'=>'admin.tarifarestaurante.store'
+			 ]);
+
+			 Route::get('tarifarestaurante/{tarifa}/destroy',[
+				'uses' =>'TarifaRestauranteController@destroy',
+				'as'=>'admin.tarifarestaurante.destroy'
+			 ]);
+
+			 Route::get('tarifarestaurante/{tarifa}/edit',[
+				'uses' =>'TarifaRestauranteController@edit',
+				'as'=>'admin.tarifarestaurante.edit'
+			 ]);
+
+			 Route::get('tarifarestaurante/{tarifa}/show',[
+				'uses' =>'TarifaRestauranteController@show',
+				'as'=>'admin.tarifarestaurante.show'
+			 ]);
+
+			 Route::put('tarifarestaurante/{tarifa}/update',[
+				'uses' =>'TarifaRestauranteController@update',
+				'as'=>'admin.tarifarestaurante.update'
+			 ]);
 });
 
 /*

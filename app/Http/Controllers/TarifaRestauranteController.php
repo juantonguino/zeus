@@ -10,6 +10,8 @@ use App\Restaurante;
 
 use App\TarifaRestaurante;
 
+use Laracasts\Flash\Flash;
+
 class TarifaRestauranteController extends Controller
 {
     /**
@@ -32,7 +34,8 @@ class TarifaRestauranteController extends Controller
      */
     public function create($id)
     {
-        dd($id);
+        //dd($id);
+        return view('admin.tarifarestaurante.create',['id'=>$id]);
     }
 
     /**
@@ -43,7 +46,13 @@ class TarifaRestauranteController extends Controller
      */
     public function store($id, Request $request)
     {
-        //
+        $tarifa= new TarifaRestaurante();
+        $tarifa->concepto=$request->concepto;
+        $tarifa->valor=$request->valor;
+        $tarifa->restaurante_id=$id;
+        $tarifa->save();
+        Flash::success('Se ha agregó la tarifa satisfactoriamente');
+        return redirect()->route('admin.tarifarestaurante.index', ['id'=>$id]);
     }
 
     /**
@@ -54,7 +63,9 @@ class TarifaRestauranteController extends Controller
      */
     public function show($id)
     {
-        //
+        $tarifa= TarifaRestaurante::find($id);
+        //dd($tarifa);
+        return view('admin.tarifarestaurante.view',['tarifa'=>$tarifa]);
     }
 
     /**
@@ -65,7 +76,9 @@ class TarifaRestauranteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tarifa= TarifaRestaurante::find($id);
+        //dd($tarifa);
+        return view('admin.tarifarestaurante.edit',['tarifa'=>$tarifa]);
     }
 
     /**
@@ -77,7 +90,13 @@ class TarifaRestauranteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tarifa= TarifaRestaurante::find($id);
+        $tarifa->concepto=$request->concepto;
+        $tarifa->valor=$request->valor;
+        //dd($tarifa);
+        $tarifa->save();
+        Flash::warning('se ha modificado la tarifa satisfactoriamente');
+        return redirect()->route('admin.tarifarestaurante.index', ['id'=>$tarifa->restaurante_id]);
     }
 
     /**
@@ -88,6 +107,11 @@ class TarifaRestauranteController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $tarifa=TarifaRestaurante::find($id);
+      $restaurante=$tarifa->restaurante_id;
+      $tarifa->delete();
+      Flash::error('se ha eliminado la tarifa satisfactoriamente');
+      //dd($tarifa);
+      return redirect()->route('admin.tarifarestaurante.index',['id'=>$restaurante]);
     }
 }

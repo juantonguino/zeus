@@ -54,7 +54,7 @@ class TarifaHotelController extends Controller
         $tarifa->concepto=$request->concepto;
         $tarifa->hotel_id=$id;
         $tarifa->save();
-        Flash::success('Se ha agregado la tarifad satisfactoriamente');
+        Flash::success('Se ha agregado la tarifa satisfactoriamente');
         return redirect()->route('admin.tarifahotel.index', ['id'=>$id]);
     }
 

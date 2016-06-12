@@ -21,6 +21,15 @@
     </thead>
     <tbody>
         @foreach($tarifas as $tarifa)
+          <tr>
+            <td>{{$tarifa->valor}}</td>
+            <td>{{$tarifa->concepto}}</td>
+            <td>
+              <a href="#" class="btn btn-danger glyphicon glyphicon-trash" title="Eiminar" onclick="confirmDelete('Desea Eliminar Tarifa??', 'Desea Eliminar la Tarifa {{$tarifa->concepto}}', '{{route('admin.tarifarestaurante.destroy',$tarifa->id)}}')" />
+              <a href="{{route('admin.tarifarestaurante.show', $tarifa->id)}}" class="btn btn-primary glyphicon glyphicon-search" title="Ver"/>
+              <a href="{{route('admin.tarifarestaurante.edit', $tarifa->id)}}" class="btn btn-warning glyphicon glyphicon-pencil" title="Editar"/>
+            </td>
+          </tr>
         @endforeach
     </tbody>
 </table>

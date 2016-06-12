@@ -4,7 +4,7 @@
 @section('content')
 <div class="row">
     <div class="form-group col-lg-3">
-      <a href="{{route('admin.tarifahotel.create', $hotel->id)}}" class="btn btn-success">Registrar Nuevo Hotel</a>
+      <a href="{{route('admin.tarifahotel.create', $hotel->id)}}" class="btn btn-success">Registrar Nueva Tarifa</a>
     </div>
     <div class="form-group col-lg-3">
       <a href="{{route('admin.hotel.index')}}" class="btn btn-primary">Regresar</a>
