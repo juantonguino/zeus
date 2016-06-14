@@ -10,6 +10,8 @@ use App\Proveedor;
 
 use App\TarifaProveedor;
 
+use Laracasts\Flash\Flash;
+
 class TarifaProveedorController extends Controller
 {
     /**
@@ -19,9 +21,9 @@ class TarifaProveedorController extends Controller
      */
     public function index($proveedor)
     {
-        $proveedor=Proveedor::find($proveedor);
+        $proveedorE=Proveedor::find($proveedor);
         $tarifas=TarifaProveedor::where('proveedor_id',$proveedor)->orderBy('id','ASC')->paginate(10);
-        return view('admin.tarifaproveedor.index',['proveedor'=>$proveedor, 'tarifas'=>$tarifas]);
+        return view('admin.tarifaproveedor.index',['proveedor'=>$proveedorE, 'tarifas'=>$tarifas]);
     }
 
     /**
@@ -31,7 +33,7 @@ class TarifaProveedorController extends Controller
      */
     public function create($proveedor)
     {
-        //
+        return view('admin.tarifaproveedor.create',['id'=>$proveedor]);
     }
 
     /**
@@ -42,7 +44,13 @@ class TarifaProveedorController extends Controller
      */
     public function store(Request $request, $proveedor)
     {
-        //
+        $tarifa= new TarifaProveedor();
+        $tarifa->valor=$request->valor;
+        $tarifa->concepto=$request->concepto;
+        $tarifa->proveedor_id=$proveedor;
+        $tarifa->save();
+        Flash::success('Se ha agregó la tarifa satisfactoriamente');
+        return redirect()->route('admin.tarifaproveedor.index', ['proveedor'=>$proveedor]);
     }
 
     /**
