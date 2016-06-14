@@ -61,7 +61,8 @@ class TarifaProveedorController extends Controller
      */
     public function show($id)
     {
-        //
+        $tarifa= TarifaProveedor::find($id);
+        return view('admin.tarifaproveedor.view', ['tarifa'=>$tarifa]);
     }
 
     /**
@@ -72,7 +73,8 @@ class TarifaProveedorController extends Controller
      */
     public function edit($id)
     {
-        //
+      $tarifa= TarifaProveedor::find($id);
+      return view('admin.tarifaproveedor.edit', ['tarifa'=>$tarifa]);
     }
 
     /**
@@ -84,7 +86,12 @@ class TarifaProveedorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tarifa= TarifaProveedor::find($id);
+        $tarifa->valor=$request->valor;
+        $tarifa->concepto=$request->concepto;
+        $tarifa->save();
+        Flash::warning('se ha modificado la tarifa satisfactoriamente');
+        return redirect()->route('admin.tarifaproveedor.index', ['id'=>$tarifa->proveedor_id]);
     }
 
     /**
@@ -95,6 +102,11 @@ class TarifaProveedorController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $tarifa=TarifaProveedor::find($id);
+      $proveedor=$tarifa->proveedor_id;
+      $tarifa->delete();
+      Flash::error('se ha eliminado la tarifa satisfactoriamente');
+      //dd($tarifa);
+      return redirect()->route('admin.tarifaproveedor.index',['id'=>$proveedor]);
     }
 }
