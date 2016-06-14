@@ -299,6 +299,46 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
 				'uses' =>'TarifaRestauranteController@update',
 				'as'=>'admin.tarifarestaurante.update'
 			 ]);
+
+			 /*
+ 			 * routes TarifaProveedor
+ 			 */
+
+ 			 Route::get('tarifaproveedor/{proveedor}',[
+ 				 'uses'=>'TarifaProveedorController@index',
+ 				 'as'=>'admin.tarifaproveedor.index'
+ 			 ]);
+			 /**
+ 			 Route::get('tarifarestaurante/{proveedor}/create',[
+ 				 'uses'=>'TarifaProveedorController@create',
+ 				 'as'=>'admin.tarifaproveedor.create'
+ 			 ]);
+
+ 			 Route::post('tarifarestaurante/{proveedor}/store',[
+ 				'uses' =>'TarifaProveedorController@store',
+ 				'as'=>'admin.tarifaproveedor.store'
+ 			 ]);
+
+ 			 Route::get('tarifarestaurante/{tarifa}/destroy',[
+ 				'uses' =>'TarifaRestauranteController@destroy',
+ 				'as'=>'admin.tarifaproveedor.destroy'
+ 			 ]);
+
+ 			 Route::get('tarifarestaurante/{tarifa}/edit',[
+ 				'uses' =>'TarifaRestauranteController@edit',
+ 				'as'=>'admin.tarifarestaurante.edit'
+ 			 ]);
+
+ 			 Route::get('tarifarestaurante/{tarifa}/show',[
+ 				'uses' =>'TarifaRestauranteController@show',
+ 				'as'=>'admin.tarifarestaurante.show'
+ 			 ]);
+
+ 			 Route::put('tarifarestaurante/{tarifa}/update',[
+ 				'uses' =>'TarifaRestauranteController@update',
+ 				'as'=>'admin.tarifarestaurante.update'
+ 			 ]);
+			 */
 });
 
 /*

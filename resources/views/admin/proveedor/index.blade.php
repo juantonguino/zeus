@@ -25,6 +25,7 @@
           <a href="#" class="btn btn-danger glyphicon glyphicon-trash" title="Eiminar" onclick="confirmDelete('Desea Eliminar Proveedor??', 'Desea Eliminar el proveedor {{$proveedor->nombre}}', '{{route('admin.proveedor.destroy',$proveedor->id)}}')" />
           <a href="{{route('admin.proveedor.show', $proveedor->id)}}" class="btn btn-primary glyphicon glyphicon-search" title="Ver"/>
           <a href="{{route('admin.proveedor.edit', $proveedor->id)}}" class="btn btn-warning glyphicon glyphicon-pencil" title="Editar"/>
+          <a href="{{route('admin.tarifaproveedor.index', $proveedor->id)}}" class="btn btn-primary glyphicon glyphicon-briefcase" title="Ver Tarfas"/>
         </td>
       </tr>
       @endforeach
