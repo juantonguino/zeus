@@ -207,11 +207,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
        'as'=>'admin.proveedor.destroy'
      ]);
 
-		 /*
-		 	* routes Asignacion
-			*/
-			Route::resource('asignar','AsignarController');
-
 			/*
 			 * routes TarifaHotel
 			 */
@@ -338,6 +333,19 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
  				'uses' =>'TarifaProveedorController@update',
  				'as'=>'admin.tarifaproveedor.update'
  			 ]);
+
+			 /*
+			 	* routes Asignacion
+				*/
+				Route::get('asignar/index',[
+					'uses'=>'AsignarController@index',
+					'as'=>'admin.asignar.index'
+				]);
+
+				Route::post('asignar/verasignacion',[
+					'uses'=>'AsignarController@verasignacion',
+					'as'=>'admin.asignar.verasignacion'
+				]);
 
 });
 

@@ -24,94 +24,33 @@ class AsignarController extends Controller
       return view('admin.asignar.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function verasignacion(Request $request)
     {
       $fecha_inicio= $request->fecha_inicio;
       $fecha_fin= $request->fecha_fin;
-      $grupos=Grupo::all();
+      $fechas_consultar=$this->getArrayDate($fecha_inicio, $fecha_fin);
+      $fechas_mostrar=$this->getArrayDateShow($fechas_consultar);
+      dd($fechas_mostrar);
+    }
 
-      $fechas_consultar=array();
-      $fechas_mostrar=array();
-      $dias = array();
-
-      while ($fecha_inicio<=$fecha_fin) {
-        $fecha_consultar= Carbon::parse($fecha_inicio)->format('Y-m-d');
-        $fecha_mostrar= Carbon::parse($fecha_inicio)->format('Y/m/d');
-
-        array_push($fechas_consultar,$fecha_consultar);
-        array_push($fechas_mostrar, $fecha_mostrar);
-
+    public function getArrayDate($fecha_inicio, $fecha_fin)
+    {
+      $retorno= array();
+      while ($fecha_inicio <= $fecha_fin) {
+        $fecha=Carbon::parse($fecha_inicio)->format('Y-m-d');
+        array_push($retorno,$fecha);
         $fecha_inicio=(new Carbon($fecha_inicio))->addDays(1);
       }
+      return $retorno;
+    }
 
-      foreach ($fechas_mostrar as $fecha) {
-        foreach ($grupos as $grupo) {
-          foreach ($grupo->dias as $dia) {
-            dd($dia);
-          }
-        }
+    public function getArrayDateShow($fechas)
+    {
+      $retorno=array();
+      for ($i=0; $i < sizeof($fechas); $i++) {
+        $fecha_mostrar= Carbon::parse($fechas[$i])->format('Y/m/d');
+        array_push($retorno, $fecha_mostrar);
       }
-      return view('admin.asignar.asignar', ['fechas_mostrar'=>$fechas_mostrar]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+      return $retorno;
     }
 }
