@@ -30,7 +30,8 @@ class AsignarController extends Controller
       $fecha_fin= $request->fecha_fin;
       $fechas_consultar=$this->getArrayDate($fecha_inicio, $fecha_fin);
       $fechas_mostrar=$this->getArrayDateShow($fechas_consultar);
-      dd($fechas_mostrar);
+      $grupos=$this->getGroupsDate($fechas_consultar);
+      return view('admin.asignar.asignar', ['fechas_mostrar'=>$fechas_mostrar, 'grupos'=>$grupos, 'fechas_consultar'=>$fechas_consultar]);
     }
 
     public function getArrayDate($fecha_inicio, $fecha_fin)
@@ -52,5 +53,41 @@ class AsignarController extends Controller
         array_push($retorno, $fecha_mostrar);
       }
       return $retorno;
+    }
+
+    public function getGroupsDate($dates)
+    {
+      $retorno = array();
+      $grupos=Grupo::all();
+      for ($i=0; $i < sizeof($dates); $i++) {
+        $fecha=$dates[$i];
+        for ($j=0; $j < sizeof($grupos); $j++) {
+          $grupo=$grupos[$j];
+          $dias=$grupo->dias;
+          for ($k=0; $k < sizeof($dias); $k++) {
+            $dia=$dias[$k];
+            if($dia->fecha==$fecha){
+                //array_push($retorno,$grupo);
+                $retorno=$this->addGroupToArray($grupo, $retorno);
+            }
+          }
+        }
+      }
+      return $retorno;
+    }
+
+    public function addGroupToArray($group, $array)
+    {
+      $ban=false;
+      for ($i=0; $i < sizeof($array) && $ban==false; $i++) {
+        $item=$array[$i];
+        if($item->id==$group->id){
+          $ban=true;
+        }
+      }
+      if ($ban==false) {
+        array_push($array,$group);
+      }
+      return $array;
     }
 }
