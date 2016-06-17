@@ -4,9 +4,9 @@
 
 	 var json = {message_title : '', message_body : '', route : ''};
 
-	 $.getScript('plugins/select2/js/select2.js',function(){
+	 $.getScript('../../plugins/select2/js/select2.js',function(){
 		 var select = $('#select2').select2();
-		 $("#tagPicker").select2({
+		 $(".tagPicker").select2({
 			 closeOnSelect:false
 		 });
 	 });

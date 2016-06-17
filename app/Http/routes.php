@@ -347,6 +347,11 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
 					'as'=>'admin.asignar.verasignacion'
 				]);
 
+				Route::post('asignar/guardar',[
+					'uses'=>'AsignarController@guardar',
+					'as'=>'admin.asignar.guardar'
+				]);
+
 });
 
 /*

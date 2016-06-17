@@ -12,6 +12,10 @@ use App\User;
 
 use App\Grupo;
 
+use App\Guia;
+
+use App\Vehiculo;
+
 class AsignarController extends Controller
 {
     /**
@@ -31,9 +35,20 @@ class AsignarController extends Controller
       $fechas_consultar=$this->getArrayDate($fecha_inicio, $fecha_fin);
       $fechas_mostrar=$this->getArrayDateShow($fechas_consultar);
       $grupos=$this->getGroupsDate($fechas_consultar);
-      return view('admin.asignar.asignar', ['fechas_mostrar'=>$fechas_mostrar, 'grupos'=>$grupos, 'fechas_consultar'=>$fechas_consultar]);
+      $guias=$this->getGuias();
+      $transportes=$this->getTransporte();
+      return view('admin.asignar.asignar', ['fechas_mostrar'=>$fechas_mostrar, 'grupos'=>$grupos, 'fechas_consultar'=>$fechas_consultar, 'guias'=>$guias, 'transportes'=>$transportes]);
     }
 
+    public function guardar(Request $request)
+    {
+      dd($request->all());
+    }
+
+    /**
+     * Metodos de Ayuda
+     *
+     */
     public function getArrayDate($fecha_inicio, $fecha_fin)
     {
       $retorno= array();
@@ -89,5 +104,17 @@ class AsignarController extends Controller
         array_push($array,$group);
       }
       return $array;
+    }
+
+    public function getGuias()
+    {
+      $guias=Guia::all()->lists('nombres', 'id');
+      return $guias;
+    }
+
+    public function getTransporte()
+    {
+      $transportes=Vehiculo::all()->lists('placa', 'id');
+      return $transportes;
     }
 }
