@@ -16,6 +16,12 @@ use App\Guia;
 
 use App\Vehiculo;
 
+use App\Dia;
+
+use App\GuiaDia;
+
+use App\VehiculoDia;
+
 class AsignarController extends Controller
 {
     /**
@@ -37,12 +43,35 @@ class AsignarController extends Controller
       $grupos=$this->getGroupsDate($fechas_consultar);
       $guias=$this->getGuias();
       $transportes=$this->getTransporte();
-      return view('admin.asignar.asignar', ['fechas_mostrar'=>$fechas_mostrar, 'grupos'=>$grupos, 'fechas_consultar'=>$fechas_consultar, 'guias'=>$guias, 'transportes'=>$transportes]);
+      return view('admin.asignar.asignar', [
+        'fechas_mostrar'=>$fechas_mostrar,
+        'grupos'=>$grupos,
+        'fechas_consultar'=>$fechas_consultar,
+        'guias'=>$guias,
+        'transportes'=>$transportes
+      ]);
     }
 
     public function guardar(Request $request)
     {
-      dd($request->all());
+      $dias=Dia::all();
+      foreach ($dias as $dia) {
+        $guia=$request['guia_id_dia'.$dia->id];
+        $transporte=$request['transporte_id_dia'.$dia->id];
+        if($guia!=null){
+          $relacion_guia= new GuiaDia();
+          $relacion_guia->guia_id=$guia;
+          $relacion_guia->dia_id=$dia->id;
+          $relacion_guia->save();
+        }
+        if($transporte!=null){
+          $relacion_vehiculo= new VehiculoDia();
+          $relacion_vehiculo->vehiculo_id=$transporte;
+          $relacion_vehiculo->dia_id=$dia->id;
+          $relacion_vehiculo->save();
+        }
+      }
+      return redirect()->route('admin.asignar.index');
     }
 
     /**
