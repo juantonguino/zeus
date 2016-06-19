@@ -45,7 +45,7 @@ class AsignarController extends Controller
       $transportes=$this->getTransporte();
       $select_guia= $this->selectAsignacionGuias($grupos);
       $select_vehiculo= $this->selectAsignacionVehiculos($grupos);
-      
+
       return view('admin.asignar.asignar', [
         'fechas_mostrar'=>$fechas_mostrar,
         'grupos'=>$grupos,
