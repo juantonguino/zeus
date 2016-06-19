@@ -43,12 +43,17 @@ class AsignarController extends Controller
       $grupos=$this->getGroupsDate($fechas_consultar);
       $guias=$this->getGuias();
       $transportes=$this->getTransporte();
+      $select_guia= $this->selectAsignacionGuias($grupos);
+      $select_vehiculo= $this->selectAsignacionVehiculos($grupos);
+      
       return view('admin.asignar.asignar', [
         'fechas_mostrar'=>$fechas_mostrar,
         'grupos'=>$grupos,
         'fechas_consultar'=>$fechas_consultar,
         'guias'=>$guias,
-        'transportes'=>$transportes
+        'transportes'=>$transportes,
+        'select_guia'=>$select_guia,
+        'select_vehiculo'=>$select_vehiculo,
       ]);
     }
 
@@ -145,5 +150,35 @@ class AsignarController extends Controller
     {
       $transportes=Vehiculo::all()->lists('placa', 'id');
       return $transportes;
+    }
+
+    public function selectAsignacionGuias($grupos)
+    {
+      $retorno = array();
+      foreach ($grupos as $grupo) {
+        foreach ($grupo->dias as $dia) {
+          $guiasDias=array();
+          foreach ($dia->guiaDias as $guiaDia) {
+            array_push($guiasDias, $guiaDia->guia_id);
+          }
+          $retorno[$dia->id]=$guiasDias;
+        }
+      }
+      return $retorno;
+    }
+
+    public function selectAsignacionVehiculos($grupos)
+    {
+      $retorno = array();
+      foreach ($grupos as $grupo) {
+        foreach ($grupo->dias as $dia) {
+          $vehiculosDias=array();
+          foreach ($dia->vehiculoDias as $vehiculoDia) {
+            array_push($vehiculosDias, $vehiculoDia->vehiculo_id);
+          }
+          $retorno[$dia->id]=$vehiculosDias;
+        }
+      }
+      return $retorno;
     }
 }

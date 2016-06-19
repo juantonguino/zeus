@@ -10,7 +10,7 @@ class Dia extends Model
 
     public function gastos()
     {
-    	return $this->hasToMany('App\Gasto');
+    	return $this->hasMany('App\Gasto');
     }
 
     public function grupo()
@@ -20,12 +20,12 @@ class Dia extends Model
 
     public function guiaDias()
     {
-    	return $this->hasToMany('App\GuiaDia');
+    	return $this->hasMany('App\GuiaDia');
     }
 
     public function vehiculoDias()
     {
-    	return $this->hasToMany('App\VehiculoDia');
+    	return $this->hasMany('App\VehiculoDia');
     }
 
     public function hotel()
