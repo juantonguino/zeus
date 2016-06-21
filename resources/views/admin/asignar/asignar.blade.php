@@ -33,9 +33,9 @@
         @if($buscado!=null)
           <td><b>{{$buscado->destino}}</b></br>
             {!! Form::label('guia_id_dia'.$buscado->id, 'Guia') !!}<br>
-            {!! Form::select('guia_id_dia'.$buscado->id, $guias, $select_guia[$buscado->id], ['class'=>'form-control tagPicker', 'multiple'=>'multiple']) !!}<br>
+            {!! Form::select('guia_id_dia'.$buscado->id.'[]', $guias, $select_guia[$buscado->id], ['class'=>'form-control tagPicker', 'multiple'=>'multiple']) !!}<br>
             {!! Form::label('transporte_id_dia'.$buscado->id, 'Transporte') !!}<br>
-            {!! Form::select('transporte_id_dia'.$buscado->id, $transportes, $select_vehiculo[$buscado->id], ['class'=>'form-control tagPicker', 'multiple'=>'multiple']) !!}<br>
+            {!! Form::select('transporte_id_dia'.$buscado->id.'[]', $transportes, $select_vehiculo[$buscado->id], ['class'=>'form-control tagPicker', 'multiple'=>'multiple']) !!}<br>
           </td>
           <?php $buscado=null; ?>
         @else

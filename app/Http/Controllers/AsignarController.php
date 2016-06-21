@@ -61,19 +61,23 @@ class AsignarController extends Controller
     {
       $dias=Dia::all();
       foreach ($dias as $dia) {
-        $guia=$request['guia_id_dia'.$dia->id];
-        $transporte=$request['transporte_id_dia'.$dia->id];
-        if($guia!=null){
-          $relacion_guia= new GuiaDia();
-          $relacion_guia->guia_id=$guia;
-          $relacion_guia->dia_id=$dia->id;
-          $relacion_guia->save();
+        $guias=$request['guia_id_dia'.$dia->id];
+        $transportes=$request['transporte_id_dia'.$dia->id];
+        if($guias!=null){
+          foreach ($guias as $guia) {
+            $relacion_guia= new GuiaDia();
+            $relacion_guia->guia_id=$guia;
+            $relacion_guia->dia_id=$dia->id;
+            $relacion_guia->save();
+          }
         }
-        if($transporte!=null){
-          $relacion_vehiculo= new VehiculoDia();
-          $relacion_vehiculo->vehiculo_id=$transporte;
-          $relacion_vehiculo->dia_id=$dia->id;
-          $relacion_vehiculo->save();
+        if($transportes!=null){
+          foreach ($transportes as $transporte) {
+            $relacion_vehiculo= new VehiculoDia();
+            $relacion_vehiculo->vehiculo_id=$transporte;
+            $relacion_vehiculo->dia_id=$dia->id;
+            $relacion_vehiculo->save();
+          }
         }
       }
       return redirect()->route('admin.asignar.index');
