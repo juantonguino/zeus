@@ -19,7 +19,7 @@
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
 			      </button>
-			      <a class="navbar-brand" href="#">AGENCIA DE VIAJES</a>
+			      <a class="navbar-brand" href="#">CIELO & TIERRA</a>
 			    </div>
   			</div><!-- /.container-fluid -->
 			</nav>
@@ -39,7 +39,7 @@
 			<nav >
 				<div class="container-fluid">
 					<div class="collapse navbar-collapse">
-						<p class="navbar-text">Todos los derechos resservados &copy 2016</p>
+						<p class="navbar-text">Todos los derechos resservados &copy {{date('Y')}}</p>
 						<div class="navbar-text navbar-right">
 							<p class=""><b>Juan Diego Tonguino</b></p>
 						</div>

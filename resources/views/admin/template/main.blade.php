@@ -9,8 +9,8 @@
 		{{Html::style('style_zeus.css')}}
 	</head>
 	<body class="admin-body">
-		<header class="panel panel-default">
-			<nav class="navbar navbar-default">
+		<header class="panel panel-inverse">
+			<nav class="navbar navbar-inverse">
   			<div class="container-fluid">
 			    <div class="navbar-header">
 			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -19,7 +19,7 @@
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
 			      </button>
-			      <a class="navbar-brand" href="{{ url('/admin') }}">AGENCIA DE VIAJES</a>
+			      <a class="navbar-brand" href="{{ url('/admin') }}">CIELO & TIERRA</a>
 			    </div>
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav">
@@ -74,7 +74,7 @@
 			<nav >
 				<div class="container-fluid">
 					<div class="collapse navbar-collapse">
-						<p class="navbar-text">Todos los derechos resservados &copy 2016</p>
+						<p class="navbar-text">Todos los derechos resservados &copy {{date('Y')}}</p>
 						<div class="navbar-text navbar-right">
 							<p class=""><b>Juan Diego Tonguino</b></p>
 						</div>
