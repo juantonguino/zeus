@@ -48,6 +48,14 @@
 </table>
 <div class="row">
   <div class="form-group col-lg-3">
+    {!! Form::hidden('fecha_inicio', $fecha_inicio, ['class'=>'form-control', 'required']) !!}
+  </div>
+  <div class="form-group col-lg-3">
+    {!! Form::hidden('fecha_fin', $fecha_fin, ['class'=>'form-control', 'required']) !!}
+  </div>
+</div>
+<div class="row">
+  <div class="form-group col-lg-3">
     {!! Form::submit('Guardar', ['class'=>'btn btn-primary']) !!}
   </div>
 </div>
