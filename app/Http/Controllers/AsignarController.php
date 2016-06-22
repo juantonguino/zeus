@@ -65,38 +65,8 @@ class AsignarController extends Controller
       $fecha_inicio=$request->fecha_inicio;
       $fecha_fin=$request->fecha_fin;
       $fechas_consultar=$this->getArrayDate($fecha_inicio, $fecha_fin);
-      foreach ($fechas_consultar as $fecha) {
-        $dia_consultar=Dia::where('fecha',$fecha)->get();
-        foreach ($dia_consultar as $dia) {
-          foreach ($dia->guiaDias as $objeto) {
-            $objeto->delete();
-          }
-          foreach ($dia->vehiculoDias as $objeto) {
-            $objeto->delete();
-          }
-        }
-      }
-      foreach ($dias as $dia) {
-        $guias=$request['guia_id_dia'.$dia->id];
-        $transportes=$request['transporte_id_dia'.$dia->id];
-        if($guias!=null){
-          foreach ($guias as $guia) {
-            $seleccion=GuiaDia::where('guia_id',$guia)->where('dia_id',$dia->id)->get();
-            $relacion_guia= new GuiaDia();
-            $relacion_guia->guia_id=$guia;
-            $relacion_guia->dia_id=$dia->id;
-            $relacion_guia->save();
-          }
-        }
-        if($transportes!=null){
-          foreach ($transportes as $transporte) {
-            $relacion_vehiculo= new VehiculoDia();
-            $relacion_vehiculo->vehiculo_id=$transporte;
-            $relacion_vehiculo->dia_id=$dia->id;
-            $relacion_vehiculo->save();
-          }
-        }
-      }
+      $this->deleteRelationsTablesGuiaVehiculo($fechas_consultar);
+      $this->addRelationsTablesGuiaVehiculo($dias, $request);
       return redirect()->route('admin.asignar.index');
     }
 
@@ -201,5 +171,45 @@ class AsignarController extends Controller
         }
       }
       return $retorno;
+    }
+
+    public function deleteRelationsTablesGuiaVehiculo($fechas_consultar)
+    {
+      foreach ($fechas_consultar as $fecha) {
+        $dia_consultar=Dia::where('fecha',$fecha)->get();
+        foreach ($dia_consultar as $dia) {
+          foreach ($dia->guiaDias as $objeto) {
+            $objeto->delete();
+          }
+          foreach ($dia->vehiculoDias as $objeto) {
+            $objeto->delete();
+          }
+        }
+      }
+    }
+
+    public function addRelationsTablesGuiaVehiculo($dias, $request)
+    {
+      foreach ($dias as $dia) {
+        $guias=$request['guia_id_dia'.$dia->id];
+        $transportes=$request['transporte_id_dia'.$dia->id];
+        if($guias!=null){
+          foreach ($guias as $guia) {
+            $seleccion=GuiaDia::where('guia_id',$guia)->where('dia_id',$dia->id)->get();
+            $relacion_guia= new GuiaDia();
+            $relacion_guia->guia_id=$guia;
+            $relacion_guia->dia_id=$dia->id;
+            $relacion_guia->save();
+          }
+        }
+        if($transportes!=null){
+          foreach ($transportes as $transporte) {
+            $relacion_vehiculo= new VehiculoDia();
+            $relacion_vehiculo->vehiculo_id=$transporte;
+            $relacion_vehiculo->dia_id=$dia->id;
+            $relacion_vehiculo->save();
+          }
+        }
+      }
     }
 }
