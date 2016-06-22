@@ -9,8 +9,8 @@
 		{{Html::style('style_zeus.css')}}
 	</head>
 	<body class="admin-body">
-		<header class="panel panel-inverse">
-			<nav class="navbar navbar-inverse">
+		<header class="panel panel-default">
+			<nav class="navbar navbar-default">
   			<div class="container-fluid">
 			    <div class="navbar-header">
 			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
