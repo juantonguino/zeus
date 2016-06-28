@@ -7,14 +7,14 @@
   <thead>
     <tr>
       <th colspan="2" class="center-col-table">Grupo</th>
-      <th colspan="{{sizeof($fechas_mostrar)}}" class="center-col-table">Fecha</th>
+      <th colspan="{{sizeof($fechas_mostrar['fecha'])}}" class="center-col-table">Fecha</th>
     </tr>
     <tr>
       <th>Nombre</th>
       <th>N° Pax</th>
-      @foreach($fechas_mostrar as $fecha)
-        <th>{{$fecha}}</th>
-      @endforeach
+      @for($i=0; $i < sizeof($fechas_mostrar['fecha']); $i++)
+        <th>{{ $fechas_mostrar['fecha'][$i] }} <br> {{ $fechas_mostrar['dia'][$i] }} </th>
+      @endfor
     </tr>
   </thead>
   <tbody>

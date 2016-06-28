@@ -22,6 +22,8 @@ use App\GuiaDia;
 
 use App\VehiculoDia;
 
+use Laracasts\Flash\Flash;
+
 class AsignarController extends Controller
 {
     /**
@@ -67,6 +69,7 @@ class AsignarController extends Controller
       $fechas_consultar=$this->getArrayDate($fecha_inicio, $fecha_fin);
       $this->deleteRelationsTablesGuiaVehiculo($fechas_consultar);
       $this->addRelationsTablesGuiaVehiculo($dias, $request);
+      Flash::success('se ha guardado la asignacion correctamente');
       return redirect()->route('admin.asignar.index');
     }
 
@@ -88,9 +91,35 @@ class AsignarController extends Controller
     public function getArrayDateShow($fechas)
     {
       $retorno=array();
+      $retorno['fecha']=array();
+      $retorno['dia']=array();
       for ($i=0; $i < sizeof($fechas); $i++) {
-        $fecha_mostrar= Carbon::parse($fechas[$i])->format('Y/m/d');
-        array_push($retorno, $fecha_mostrar);
+        $carbon=Carbon::parse($fechas[$i]);
+        $fecha_mostrar= $carbon->format('Y/m/d');
+        $dia="";
+        if ($carbon->dayOfWeek==Carbon::SUNDAY) {
+          $dia="Domingo";
+        }
+        else if($carbon->dayOfWeek==Carbon::MONDAY){
+          $dia="Lunes";
+        }
+        else if($carbon->dayOfWeek==Carbon::TUESDAY){
+          $dia="Martes";
+        }
+        else if($carbon->dayOfWeek==Carbon::WEDNESDAY){
+          $dia="Miercoles";
+        }
+        else if($carbon->dayOfWeek==Carbon::THURSDAY){
+          $dia="Jueves";
+        }
+        else if($carbon->dayOfWeek==Carbon::FRIDAY){
+          $dia="Viernes";
+        }
+        else if($carbon->dayOfWeek==Carbon::SATURDAY){
+          $dia="Sabado";
+        }
+        array_push($retorno['dia'], $dia);
+        array_push($retorno['fecha'], $fecha_mostrar);
       }
       return $retorno;
     }
