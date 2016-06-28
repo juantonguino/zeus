@@ -3,7 +3,7 @@
 @section('title_section', 'Asignacion')
 @section('content')
 {!! Form::open(['route'=>['admin.asignar.guardar'], 'method'=>'POST']) !!}
-<table class="table" border="1" id="tabla">
+<table class="table" id="tabla" border="1" style="border: solid #ddd">
   <thead>
     <tr>
       <th colspan="2" class="center-col-table">Grupo</th>
