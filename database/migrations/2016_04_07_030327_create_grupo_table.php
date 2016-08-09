@@ -15,6 +15,7 @@ class CreateGrupoTable extends Migration
         Schema::create('grupo', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre', 100);
+            $table->string('plan', 100)->nullable();
             $table->boolean('estado')->default(true);
             $table->string('ciudad_origen', 100)->nullable();
             $table->dateTime('fecha_llegada')->nullable();

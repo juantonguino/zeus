@@ -24,7 +24,7 @@ class CreateDiaTable extends Migration
             $table->integer('grupo_id')->unsigned();
             $table->foreign('grupo_id')->references('id')->on('grupo')->onDelete('cascade');
 
-            $table->integer('hotel_id')->unsigned();
+            $table->integer('hotel_id')->unsigned()->nullable();
             $table->foreign('hotel_id')->references('id')->on('hotel')->onDelete('cascade');
 
             $table->timestamps();
