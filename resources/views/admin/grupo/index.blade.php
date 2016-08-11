@@ -10,18 +10,20 @@
 	<hr/>
 	<table class="table">
 		<thead>
+			<th>Plan</th>
 			<th>Nombre</th>
 			<th>Estado</th>
 			<th>Fecha de LLegada</th>
 			<th>Hora de LLegada</th>
 			<th>Fecha de Salida</th>
 			<th>Hora de Salida</th>
-			<th>Costo Total Recorrido</th>
+			<!--<th>Costo Total Recorrido</th>-->
 			<th>Opciones</th>
 		</thead>
 		<tbody>
 			@foreach($grupos as $grupo)
 				<tr>
+					<td>{{$grupo->plan}}</td>
 					<td>{{$grupo->nombre}}</td>
 					@if($grupo->estado==1)
 						<td>{{'Activo'}}</td>
@@ -32,7 +34,7 @@
 					<td>{{$grupo->hora_llegada}}</td>
 					<td>{{$grupo->fecha_salida}}</td>
 					<td>{{$grupo->hora_salida}}</td>
-					<td>{{$grupo->costo_total_recorrido}}</td>
+					<!--<td>{{$grupo->costo_total_recorrido}}</td>-->
 					<td>
 						<a href="#" class="btn btn-danger glyphicon glyphicon-trash" title="Eiminar" onclick="confirmDelete('Desea Eliminar Grupo??', 'Desea Eliminar el Grupo {{$grupo->nombre}}', '{{route('admin.grupo.destroy',$grupo->id)}}')" />
 						<a href="{{route('admin.grupo.show', $grupo->id)}}" class="btn btn-primary glyphicon glyphicon-search" title="Ver"/>

@@ -3,9 +3,15 @@
 @section('title_section', 'Ver Grupo '.$grupo->nombre)
 @section('content')
 		<div class="row">
+			<div class="form-group col-lg-6">
+					{!!Form::label('plan', 'Plan:')!!}
+					{!!Form::text('plan', $grupo->plan, ['class'=>'form-control', 'placeholder'=>'Plan del grupo','required', 'disabled'=>'true'])!!}
+			</div>
+		</div>
+		<div class="row">
     		<div class="form-group col-lg-6">
         		{!! Form::label('nombre', 'Nombre:') !!}
-				{!! Form::text('nombre', $grupo->nombre, ['class'=>'form-control', 'placeholder'=>'Nombre del grupo', 'required', 'disabled'=>'true']) !!}
+						{!! Form::text('nombre', $grupo->nombre, ['class'=>'form-control', 'placeholder'=>'Nombre del grupo', 'required', 'disabled'=>'true']) !!}
     		</div>
 		</div>
 		<div class="row">

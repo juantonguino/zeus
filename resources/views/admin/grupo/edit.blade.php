@@ -4,6 +4,12 @@
 @section('content')
 {!! Form::open(['route'=>['admin.grupo.update', $grupo->id], 'method'=>'PUT']) !!}
 		<div class="row">
+			<div class="form-group col-lg-6">
+					{!!Form::label('plan', 'Plan:')!!}
+					{!!Form::text('plan', $grupo->plan, ['class'=>'form-control', 'placeholder'=>'Plan del grupo'])!!}
+			</div>
+		</div>
+		<div class="row">
     		<div class="form-group col-lg-6">
         		{!! Form::label('nombre', 'Nombre:') !!}
 				{!! Form::text('nombre', $grupo->nombre, ['class'=>'form-control', 'placeholder'=>'Nombre del grupo', 'required']) !!}

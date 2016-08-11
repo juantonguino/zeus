@@ -58,6 +58,7 @@ class GrupoController extends Controller
     public function store(Request $request)
     {
         $grupo= new Grupo();
+        $grupo->plan = $request->plan;
         $grupo->nombre = $request->nombre;
         $grupo->estado = $request->estado;
         $grupo->ciudad_origen = $request->ciudad_origen;
@@ -128,6 +129,7 @@ class GrupoController extends Controller
         $grupo=Grupo::find($id);
         $old_values=Grupo::find($id);
 
+        $grupo->plan = $request->plan;
         $grupo->nombre = $request->nombre;
         $grupo->estado = $request->estado;
         $grupo->ciudad_origen = $request->ciudad_origen;
