@@ -34,7 +34,12 @@ class DiaController extends Controller
         $hoteles= Hotel::all();
         foreach ($dias as $dia) {
           $dia->fecha=Carbon::parse($dia->fecha)->format('Y/m/d');
-          $dia->hotel_id=Hotel::find($dia->hotel_id)->nombre;
+          if ($dia->hotel_id!=null){
+              $dia->hotel_id=Hotel::find($dia->hotel_id)->nombre;
+          }
+          else{
+              $dia->hotel_id= "No Aplica";
+          }
         }
         return view('admin.dia.index', ['grupo'=>$grupo,'dias'=>$dias]);
     }
@@ -51,6 +56,7 @@ class DiaController extends Controller
       foreach ($hoteles as $hotel) {
         $listahoteles["$hotel->id"]=$hotel->nombre;
       }
+      $listahoteles["null"]="No Aplica";
       return view('admin.dia.create', ['id'=>$id, 'listahoteles'=>$listahoteles]);
     }
 
@@ -71,6 +77,9 @@ class DiaController extends Controller
       $dia->instrucciones_recorrido_guia= $request->instrucciones_recorrido_guia;
       $dia->recorrido_plan=$request->recorrido_plan;
       $dia->grupo_id=$id;
+      if($dia->hotel_id=="null"){
+          $dia->hotel_id=null;
+      }
       $dia->save();
       $dia->fecha=Carbon::parse($dia->fecha)->format('Y/m/d');
       Flash::success('Se ha agregado el Dia <b>'.$dia->fecha.'</b> satisfactoriamente');
@@ -92,6 +101,10 @@ class DiaController extends Controller
       foreach ($hoteles as $hotel) {
         $listahoteles["$hotel->id"]=$hotel->nombre;
       }
+      if($dia->hotel_id==null){
+          $dia->hotel_id="null";
+      }
+      $listahoteles["null"]="No Aplica";
       $dia->fecha_mostrar=Carbon::parse($dia->fecha)->format('Y/m/d');
       return view('admin.dia.view',['dia'=>$dia, 'listahoteles'=>$listahoteles]);
     }
@@ -112,6 +125,10 @@ class DiaController extends Controller
       foreach ($hoteles as $hotel) {
         $listahoteles["$hotel->id"]=$hotel->nombre;
       }
+      if($dia->hotel_id==null){
+          $dia->hotel_id="null";
+      }
+      $listahoteles["null"]="No Aplica";
       return view('admin.dia.edit',['dia'=>$dia,'listahoteles'=>$listahoteles]);
     }
 
@@ -125,8 +142,6 @@ class DiaController extends Controller
     public function update(Request $request, $id)
     {
       $dia=Dia::find($id);
-      $old_values=Dia::find($id);
-
       $dia->destino=$request->destino;
       $dia->instrucciones_recorrido_guia=$request->instrucciones_recorrido_guia;
       $dia->recorrido_plan=$request->recorrido_plan;
@@ -135,10 +150,11 @@ class DiaController extends Controller
       $dia->dinero_asignado=$request->dinero_asignado;
       $dia->hotel_id=$request->hotel_id;
 
-      $new_values=$dia;
-      $type= Dia::class;
+      if($dia->hotel_id=="null"){
+          $dia->hotel_id=null;
+      }
+
       $dia->save();
-      LogManager::insertLogUpdate($old_values, $new_values, $type, Auth::user()->name);
       $fecha=$dia->fecha=Carbon::parse($dia->fecha)->format('Y/m/d');
       Flash::warning('Se ha modificado el dia '.$fecha.' satisfactoriamente');
       return redirect()->route('admin.dia.index', ['id'=>$dia->grupo_id]);
