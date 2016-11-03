@@ -22,6 +22,12 @@
       </div>
   </div>
   <div class="row">
+      <div class="form-group col-lg-6">
+          {!! Form::label('type', 'Tipo:') !!}
+          {!! Form::select('type', ['admin'=>'Administrador','empleado'=>'Empleado'], null, ['class'=>'form-control', 'placeholder'=>'Tipo', 'required']) !!}
+      </div>
+  </div>
+  <div class="row">
     <div class="form-group col-lg-3">
       {!! Form::submit('Registrar Usuario', ['class'=>'btn btn-success']) !!}
     </div>

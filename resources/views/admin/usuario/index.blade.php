@@ -12,6 +12,7 @@
   <thead>
     <th>Nombre</th>
     <th>Correo Electronico</th>
+    <th>Tipo</th>
     <th>Opciones</th>
   </thead>
   <tbody>
@@ -19,6 +20,11 @@
       <tr>
         <td>{{$usuario->name}}</td>
         <td>{{$usuario->email}}</td>
+        @if($usuario->type=='admin')
+            <td>Administrador</td>
+        @else
+            <td>Empleado</td>
+        @endif
         <td>
           <a href="#" class="btn btn-danger glyphicon glyphicon-trash" title="Eiminar" onclick="confirmDelete('Desea Eliminar Usuario??', 'Desea Eliminar el Usuario {{$usuario->name}}', '{{route('admin.usuario.destroy',$usuario->id)}}')" />
           <a href="{{route('admin.usuario.show', $usuario->id)}}" class="btn btn-primary glyphicon glyphicon-search" title="Ver"/>

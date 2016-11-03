@@ -52,7 +52,7 @@ class UsuarioController extends Controller
       $usuario->name=$request->name;
       $usuario->email=$request->email;
       $usuario->password=bcrypt($request->password);
-      //dd($usuario);
+      $usuario->type=$request->type;
       $usuario->save();
       Flash::success('Se ha agregado el Usuario <b>'.$usuario->nombre.'</b> satisfactoriamente');
       return redirect()->route('admin.usuario.index');
@@ -92,17 +92,13 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
       $usuario=User::find($id);
-      $old_values=User::find($id);
       $usuario->name=$request->name;
       $usuario->email=$request->email;
       if($request->password!=""){
           $usuario->password=bcrypt($request->password);
       }
-      //dd($usuario);
-      $new_values=$usuario;
-      $type=Usuario::class;
+      $usuario->type=$request->type;
       $usuario->save();
-      LogManager::insertLogUpdate($old_values, $new_values, $type, Auth::user()->name);
       Flash::warning('Se ha modificado el usuario <b>'.$usuario->name.'</b> satisfactoriamente');
       return redirect()->route('admin.usuario.index');
     }
