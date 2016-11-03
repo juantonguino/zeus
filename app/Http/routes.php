@@ -15,7 +15,7 @@
 //    return view('welcome');
 //});
 
-Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
+Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'manager']], function () {
 
 	Route::get('index', function () {
     	return view('admin.index');
@@ -352,6 +352,17 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
 					'as'=>'admin.asignar.guardar'
 				]);
 
+});
+
+Route::group(['prefix'=>'employee', 'middleware'=>'auth'], function(){
+
+    Route::get('/', function () {
+    	dd('Hola mundo desde empleado');
+	});
+
+    Route::get('index', function () {
+    	dd('Hola mundo desde empleado');
+	});
 });
 
 /*
