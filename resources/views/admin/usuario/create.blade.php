@@ -23,6 +23,12 @@
   </div>
   <div class="row">
       <div class="form-group col-lg-6">
+          {!! Form::label('guia', 'Guia:') !!}
+          {!! Form::select('guia_id', $guias, null, ['class'=>'form-control', 'placeholder'=>'Sleccione el guia al que le pertenece']) !!}
+      </div>
+  </div>
+  <div class="row">
+      <div class="form-group col-lg-6">
           {!! Form::label('type', 'Tipo:') !!}
           {!! Form::select('type', ['admin'=>'Administrador','empleado'=>'Empleado'], null, ['class'=>'form-control', 'placeholder'=>'Tipo', 'required']) !!}
       </div>

@@ -4,6 +4,19 @@
 
 	 var json = {message_title : '', message_body : '', route : ''};
 
+	 var destinos=[
+		{
+			destino:"Seleccione un Destino",
+			instrucciones:""
+		},
+		{
+			destino:"Santurio de las Lajas",
+			instrucciones:"santuario instrucciones"},
+		{
+			destino:"Sandona",
+			instrucciones:"Sandona instrucciones"
+		}];
+
 	 $.getScript('../../plugins/select2/js/select2.js',function(){
 		 var select = $('#select2').select2();
 		 $(".tagPicker").select2({
@@ -27,3 +40,31 @@
 		$("#texto").text(message_body);
 		$("#dialog").modal();
 	}
+	function loadSelect(){
+		 for(i=0; i<destinos.length; i++){
+			 console.log(destinos[i]);
+			 $("#destino-dinamico").append($('<option>', {value:destinos[i].destino, text:destinos[i].destino}));
+		 }
+	}
+
+	loadSelect();
+
+	function encontrarDestino(arreglo, destino){
+		for (var i = 0; i < arreglo.length; i++) {
+			variable=arreglo[i];
+			if (variable.destino==destino) {
+				return variable;
+			}
+		}
+		return null;
+	}
+	$("#destino-dinamico").change(function () {
+    var str = "";
+		destinoGeneral=null;
+    $( "#destino-dinamico option:selected" ).each(function() {
+      str += $( this ).text();
+			destinoGeneral=encontrarDestino(destinos, str);
+			console.log(destinoGeneral);
+    });
+    $("#recorrido_plan").text(destinoGeneral.instrucciones)
+  }).change();

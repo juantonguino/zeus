@@ -20,6 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('type');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->integer('guia_id')->nullable();
+            //$table->foreign('guia_id')->references('id')->on('guia')->onDelete('cascade');
         });
     }
 

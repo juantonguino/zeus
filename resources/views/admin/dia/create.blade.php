@@ -6,9 +6,12 @@
     <div class="row">
         <div class="form-group col-lg-6">
             {!! Form::label('destino', 'Destino:') !!}
-            {!! Form::text('destino', null, ['class'=>'form-control', 'placeholder'=>'Destino', 'required']) !!}
+            <!--{!! Form::text('destino', null, ['class'=>'form-control', 'placeholder'=>'Destino', 'required']) !!}-->
+            <select name="destino" id="destino-dinamico" class="form-control" placeholder= "Destino">
+            </select>
         </div>
     </div>
+    <!--
     <div class="row">
         <div class="form-group col-lg-3">
             {!! Form::label('dinero_asignado', 'Dinero Asignado:') !!}
@@ -19,6 +22,7 @@
             {!! Form::number('total_gastado', null, ['class'=>'form-control', 'placeholder'=>'Total Gastado', 'required']) !!}
         </div>
     </div>
+  -->
     <div class="row">
         <div class="form-group col-lg-3">
             {!! Form::label('fecha', 'Fecha:') !!}
@@ -38,7 +42,7 @@
     <div class="row">
         <div class="form-group col-lg-6">
             {!! Form::label('recorrido_plan', 'Recorrido del Plan:') !!}
-            {!! Form::textarea('recorrido_plan', null, ['class'=>'form-control', 'placeholder'=>'Recorrido del Plan', 'required']) !!}
+            {!! Form::textarea('recorrido_plan', null, ['id'=>'recorrido_plan','class'=>'form-control', 'placeholder'=>'Recorrido del Plan', 'required']) !!}
         </div>
     </div>
     <div class="row">

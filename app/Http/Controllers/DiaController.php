@@ -80,6 +80,7 @@ class DiaController extends Controller
       if($dia->hotel_id=="null"){
           $dia->hotel_id=null;
       }
+      //dd($dia);
       $dia->save();
       $dia->fecha=Carbon::parse($dia->fecha)->format('Y/m/d');
       Flash::success('Se ha agregado el Dia <b>'.$dia->fecha.'</b> satisfactoriamente');

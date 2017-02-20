@@ -357,7 +357,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'manager']], function ()
 Route::group(['prefix'=>'employee', 'middleware'=>'auth'], function(){
 
     Route::get('/', function () {
-    	dd('Hola mundo desde empleado');
+    	return view('employee.index');
 	});
 
     Route::get('index', function () {

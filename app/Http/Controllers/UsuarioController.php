@@ -37,7 +37,8 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-      return view('admin.usuario.create');
+      $guias= Guia::all()->lists('nombres', 'id');
+      return view('admin.usuario.create', ['guias'=>$guias]);
     }
 
     /**
@@ -53,6 +54,7 @@ class UsuarioController extends Controller
       $usuario->email=$request->email;
       $usuario->password=bcrypt($request->password);
       $usuario->type=$request->type;
+      $usuario->guia_id=$request->guia_id;
       $usuario->save();
       Flash::success('Se ha agregado el Usuario <b>'.$usuario->nombre.'</b> satisfactoriamente');
       return redirect()->route('admin.usuario.index');
@@ -67,7 +69,8 @@ class UsuarioController extends Controller
     public function show($id)
     {
         $usuario=User::find($id);
-        return view('admin.usuario.view',['usuario'=>$usuario]);
+        $guias= Guia::all()->lists('nombres', 'id');
+        return view('admin.usuario.view',['usuario'=>$usuario, 'guias'=>$guias]);
     }
 
     /**
@@ -79,7 +82,8 @@ class UsuarioController extends Controller
     public function edit($id)
     {
       $usuario=User::find($id);
-      return view('admin.usuario.edit',['usuario'=>$usuario]);
+      $guias= Guia::all()->lists('nombres', 'id');
+      return view('admin.usuario.edit',['usuario'=>$usuario, 'guias'=>$guias]);
     }
 
     /**
@@ -98,6 +102,7 @@ class UsuarioController extends Controller
           $usuario->password=bcrypt($request->password);
       }
       $usuario->type=$request->type;
+      $usuario->guia_id=$request->guia_id;
       $usuario->save();
       Flash::warning('Se ha modificado el usuario <b>'.$usuario->name.'</b> satisfactoriamente');
       return redirect()->route('admin.usuario.index');
